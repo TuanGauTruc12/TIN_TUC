@@ -166,7 +166,6 @@ ul:last-child {
 img,
 .nav > li > a > img { /* RESPONSIVE IMAGES */
     max-width: 100%;
-    height: auto;
 }
 
 ::-moz-selection {

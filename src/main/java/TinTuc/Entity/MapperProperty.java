@@ -11,8 +11,8 @@ public class MapperProperty implements RowMapper<Property>{
 	public Property mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Property property = new Property();
 		property.setId(rs.getInt(1));
-		property.setTitle(rs.getString(2));
-		property.setSlug(rs.getString(3));
+		property.setTitle(rs.getNString(2));
+		property.setSlug(rs.getNString(3));
 		property.setId_category(rs.getInt(4));
 		return property;
 	}

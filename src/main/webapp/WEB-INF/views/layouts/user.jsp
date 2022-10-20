@@ -19,7 +19,6 @@
     <!--Font awesome icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
 
-<!-- local:8080/TINTuc/ -->
     <!-- ==== Favicons ==== -->
     <link rel="icon" href="<c:url value="/public/user/frontend/img/KCN.png"/>" type="<c:url value="/public/user/frontend/img/KCN.png"/>" />
 
@@ -44,12 +43,14 @@
     <!-- ==== Theme Color Stylesheet ==== -->
     <link rel="stylesheet" href="<c:url value="/public/user/frontend/css/colors/theme-color-1.css"/>" id="changeColorScheme" />
 
-    <!-- ==== Custom Stylesheet ==== -->
+	<!-- ==== Custom css === -->
     <link rel="stylesheet" href="<c:url value="/public/user/frontend/css/custom.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/public/user/custom/style.css"/>" />
+    
 <decorator:head />
 </head>
 <body class="boxed" data-bg-img="<c:url value="/public/user/frontend/img/bg-pattern.png"/>">
-    <div class="wrapper">
+    <div class ="wrapper">
 
 		<%@include file="/WEB-INF/views/layouts/user/header.jsp"%>
 
@@ -155,7 +156,7 @@
     <!-- ==== Main JavaScript ==== -->
     <script src="<c:url value="/public/user/frontend/js/main.js"/>"></script>
 	<!-- ==== Custum JavaScript -->
-    <script src="<c:url value="/public/app.js"/>"></script>
+    <script src="<c:url value="/public/user/custom/app.js"/>"></script>
 	
 </body>
 </html>

@@ -9,7 +9,7 @@ public class HomeController extends BaseController{
 	@RequestMapping(value = "/")
 	public ModelAndView index() {
        	_mvShare.setViewName("user/index");
-       	
+       	_mvShare.addObject("newSixs", _homeServiceImp.getDataLimitSix());
     	return _mvShare;
     }
 }

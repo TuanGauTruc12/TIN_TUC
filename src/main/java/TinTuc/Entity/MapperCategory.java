@@ -12,10 +12,6 @@ public class MapperCategory implements RowMapper<Category>{
 		category.setId(rs.getInt("id"));
 		category.setTitle(rs.getString("title"));
 		category.setSlug(rs.getString("slug"));
-		String cratedAt = rs.getString("created_at");
-		String updatedAt = rs.getString("updated_at");
-		category.setCreated_at(cratedAt);
-		category.setUpdated_at(updatedAt);
 		category.setChubien(rs.getInt("chubien"));
 		return category;
 	}

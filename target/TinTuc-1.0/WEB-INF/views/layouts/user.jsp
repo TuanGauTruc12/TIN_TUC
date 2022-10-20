@@ -19,6 +19,7 @@
     <!--Font awesome icon-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
 
+<!-- local:8080/TINTuc/ -->
     <!-- ==== Favicons ==== -->
     <link rel="icon" href="<c:url value="/public/user/frontend/img/KCN.png"/>" type="<c:url value="/public/user/frontend/img/KCN.png"/>" />
 
@@ -48,7 +49,7 @@
 <decorator:head />
 </head>
 <body class="boxed" data-bg-img="<c:url value="/public/user/frontend/img/bg-pattern.png"/>">
-    <div class="wrapper">
+    <div class ="wrapper">
 
 		<%@include file="/WEB-INF/views/layouts/user/header.jsp"%>
 

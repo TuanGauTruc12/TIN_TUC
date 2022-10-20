@@ -9,9 +9,12 @@
 			<div class="float--left float--xs-none text-xs-center">
 				<!-- Header Topbar Info Start -->
 				<ul class="header--topbar-info nav">
-					<li><i class="fa fm fa-map-marker"></i><span id= "container__location"></span></li>
-					<li><i class="fa fm fa-mixcloud"></i><span id= "container__tempera"></span><sup>0</sup> C</li>
-					<li><i class="fa fm fa-calendar"></i><span id= "container__date"></span></li>
+					<li><i class="fa fm fa-map-marker"></i><span
+						id="container__location"></span></li>
+					<li><i class="fa fm fa-mixcloud"></i><span
+						id="container__tempera"></span><sup>0</sup> C</li>
+					<li><i class="fa fm fa-calendar"></i><span
+						id="container__date"></span></li>
 				</ul>
 				<!-- Header Topbar Info End -->
 			</div>
@@ -95,12 +98,19 @@
 				<!-- Header Menu Links Start -->
 				<ul class="header--menu-links nav navbar-nav"
 					data-trigger="hoverIntent">
+					<c:forEach items="${ categories }" var="category">
+						<li class="dropdown"><a href="${ category.slug }" class="dropdown-toggle"
+							data-toggle="dropdown">${ category.title }</a>
+							<ul class="dropdown-menu">
+								<c:forEach items="${properties }" var="property">
+									<c:if test="${category.id == property.id_category }">
+										<li><a href="${ category.slug }/${property.slug}">${ property.title }</a></li>
+									</c:if>
+								</c:forEach>
+							</ul></li>
 
-					<c:forEach var="item" items="${ categories }">
-						<li>
-							<a href="http://localhost/KCNEW/danh-muc-${ item.slug }">${ item.title }</a>
-						</li>
 					</c:forEach>
+
 				</ul>
 				<!-- Header Menu Links End -->
 			</div>
@@ -127,59 +137,46 @@
 
 <!-- Posts Filter Bar Start -->
 <div class="posts--filter-bar style--3 hidden-xs">
-    <div class="container">
-        <ul class="nav">
-            <li>
-                <a href="http://localhost/KCNEW/tintucmoinhat">
-                    <i class="fa fa-star-o"></i>
-                    <span>Tin tức mới nhất</span>
-                </a>
-            </li>
-         
-            <li>
-                <a href="http://localhost/KCNEW/tinnong">
-                    <i class="fa fa-fire"></i>
-                    <span>Tin nóng</span>
-                </a>
-            </li>
-            <li>
-                <a href="http://localhost/KCNEW/xemnhieunhat">
-                    <i class="fa fa-eye"></i>
-                    <span>Xem nhiều nhất</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+	<div class="container">
+		<ul class="nav">
+			<li><a href="http://localhost/KCNEW/tintucmoinhat"> <i
+					class="fa fa-star-o"></i> <span>Tin tức mới nhất</span>
+			</a></li>
+
+			<li><a href="http://localhost/KCNEW/tinnong"> <i
+					class="fa fa-fire"></i> <span>Tin nóng</span>
+			</a></li>
+			<li><a href="http://localhost/KCNEW/xemnhieunhat"> <i
+					class="fa fa-eye"></i> <span>Xem nhiều nhất</span>
+			</a></li>
+		</ul>
+	</div>
 </div>
 <!-- Posts Filter Bar End -->
 
 <!-- News Ticker Start -->
 <div class="news--ticker">
-    <div class="container">
-        <div class="title">
-            <h2>Tin mới cập nhật</h2>
-            <
-        </div>
+	<div class="container">
+		<div class="title">
+			<h2>Tin mới cập nhật</h2>
+			<
+		</div>
 
-        <div class="news-updates--list" data-marquee="true">
-            <ul class="nav">
-                                <li>
-                    <h3 class="h3"><a href="http://localhost/KCNEW/bai-viet-droptop-phien-ban-tien-linh">Droptop phiên bản Tiến Linh.</a></h3>
-                </li>
-                                <li>
-                    <h3 class="h3"><a href="http://localhost/KCNEW/bai-viet-tphcm-ra-mat-dich-vu-xe-dap-cong-cong">TPHCM ra mắt dịch vụ xe đạp công cộng.</a></h3>
-                </li>
-                                <li>
-                    <h3 class="h3"><a href="http://localhost/KCNEW/bai-viet-nhieu-dau-hieu-la-tu-lo-den-trung-tam-ngan-ha-quai-vat-troi-day">Nhiều dấu hiệu lạ từ lỗ đen trung tâm Ngân Hà: Quái vật trỗi dậy?.</a></h3>
-                </li>
-                                <li>
-                    <h3 class="h3"><a href="http://localhost/KCNEW/bai-viet-vong-tron-lua-tu-vu-tru-khac-hien-ra-gan-chung-ta-khoa-hoc-boi-roi">Vòng tròn lửa &quot;từ vũ trụ khác&quot; hiện ra gần chúng ta, khoa học bối rối.</a></h3>
-                </li>
-                                <li>
-                    <h3 class="h3"><a href="http://localhost/KCNEW/bai-viet-5-phat-minh-vi-dai-nhat-cua-nhan-loai-lam-thay-doi-ca-the-gioi">5 phát minh vĩ đại nhất của nhân loại làm thay đổi cả thế giới.</a></h3>
-                </li>
-                            </ul>
-        </div>
-    </div>
+		<div class="news-updates--list" data-marquee="true">
+			<ul class="nav">
+				<c:forEach items="${ newUpdates }" var="newUpdate">
+				<li>
+				
+					<h3 class="h3">
+						<a
+							href='<c:url value = "/tin-tuc/${ newUpdate.slug }"/>'>${newUpdate.title }</a>
+					</h3>
+				
+				</li>
+				</c:forEach>
+			
+			</ul>
+		</div>
+	</div>
 </div>
 <!-- News Ticker End -->
