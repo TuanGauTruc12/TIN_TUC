@@ -48,4 +48,9 @@ public class HomeServiceImp implements HomeService{
 	public List<NewDTO> getDataLimitSix() {
 		return newDAO.getDataLimitSix();
 	}
+
+	@Override
+	public List<NewDTO> getAllDataNewByCategory() {
+		return categoryDAO.getAllDataNewByCategory();
+	}
 }

@@ -15,27 +15,27 @@
 							<div class="col-1 col-md-6 col-lg-4">
 								<!-- Post Item Start -->
 								<div class="post--item post--layout-1 post--title-large">
-									<div class="post--img" style ="">
-										<a
-											href="http://localhost/KCNEW/bai-viet-tphcm-ra-mat-dich-vu-xe-dap-cong-cong">
-											<img class = "img-fluid" height="400"
+									<div class="post--img">
+										<a href="<c:url value = "/tin-tuc/${ nexSix.newSlug }"/>">
+											<img class="img-fluid" height="400"
 											src='<c:url value = "/public/user/uploads/tintuc/${ nexSix.image }"/>'
-											alt=""></a> <a href="http://localhost/KCNEW/category/xe-co"
-											class="cat">Xe cộ</a> <a href="#" class="icon"><i
-											class="fa fa-flash"></i></a>
+											alt="">
+										</a> <a
+											href="<c:url value = "/${nexSix.categorySlug}/${ nexSix.propertySlug }"/>"
+											class="cat">${ nexSix.propertyTitle }</a> <a href="#"
+											class="icon"><i class="fa fa-flash"></i></a>
 
 										<div class="post--info">
 											<ul class="nav meta">
-												<li><a href="#">Lâm Thùy Linh</a></li>
+												<li><span class = "d-inline bg-black">${ nexSix.author }</span></li>
 
-												<li><a href="#">2022-05-19</a></li>
+												<li><span class = "d-inline bg-black">${ nexSix.approvalDate }</span></li>
 											</ul>
 
 											<div class="title">
-												<h2 class="h4">
-													<a
-														href="http://localhost/KCNEW/bai-viet-tphcm-ra-mat-dich-vu-xe-dap-cong-cong"
-														class="btn-link">TPHCM ra mắt dịch vụ xe đạp công cộng</a>
+												<h2 class="h4 d-inline bg-black">
+													<a href="<c:url value = "/tin-tuc/${ nexSix.newSlug }"/>"
+														class="btn-link">${ nexSix.newTitle }</a>
 												</h2>
 											</div>
 										</div>

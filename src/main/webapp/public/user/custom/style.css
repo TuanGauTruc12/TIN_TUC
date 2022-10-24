@@ -6,3 +6,10 @@
 	background: black;
 }
 
+.ms-2{
+	margin-left: 2rem !important; 
+}
+
+.mt-2{
+	margin-top: 2rem !important;
+}

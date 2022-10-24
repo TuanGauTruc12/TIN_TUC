@@ -15,5 +15,6 @@ public interface HomeService {
 	public List<Property> getDataProperties();
 	public List<New> getDataNewUpdate();
 	public List<NewDTO> getDataLimitSix();
+	public List<NewDTO> getAllDataNewByCategory();
 	public Category getCategoryByID(String slug);
 }

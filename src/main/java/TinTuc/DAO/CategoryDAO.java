@@ -2,7 +2,12 @@ package TinTuc.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.instrument.classloading.jboss.JBossLoadTimeWeaver;
 import org.springframework.stereotype.Repository;
+
+import TinTuc.DTO.MapperNewDTO;
+import TinTuc.DTO.NewDTO;
 import TinTuc.Entity.Category;
 import TinTuc.Entity.MapperCategory;
 
@@ -23,6 +28,12 @@ public class CategoryDAO extends BaseDAO{
 		return category;
 	}
 	 */
+	
+	public List<NewDTO> getAllDataNewByCategory(){
+		String sql = sqlDataNewDTO().append(" ORDER BY category.id;").toString();
+		List<NewDTO> list = jdbcTemplate.query(sql, new MapperNewDTO());
+		return list;
+	}
 	
 	@Override
 	public void delete(int id) {

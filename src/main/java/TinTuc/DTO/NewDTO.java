@@ -11,7 +11,14 @@ public class NewDTO {
 	private String propertySlug;
 	private String newSlug;
 	private String categorySlug;
+	private int idCategory;
 	
+	public int getIdCategory() {
+		return idCategory;
+	}
+	public void setIdCategory(int idCategory) {
+		this.idCategory = idCategory;
+	}
 	public String getCategorySlug() {
 		return categorySlug;
 	}

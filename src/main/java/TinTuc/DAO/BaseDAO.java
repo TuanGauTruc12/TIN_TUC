@@ -26,5 +26,11 @@ public abstract class BaseDAO {
 		sqlBuffer.append(tableName);
 		return sqlBuffer;
 	}
+	
+	protected StringBuffer sqlDataNewDTO() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT image, user.name AS author, new.title AS newTitle, property.title AS propertyTitle, new.approval_date AS approvalDate, property.slug AS propertySlug, new.slug AS newSlug, category.slug AS categorySlug, category.id AS idCategory FROM new, property, category, user WHERE new.id_property = property.id AND property.id_category = category.id AND category.id = new.id_category AND new.author = user.id");
+		return sb;
+	}
 }
 

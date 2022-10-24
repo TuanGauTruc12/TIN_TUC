@@ -10,6 +10,7 @@ public class HomeController extends BaseController{
 	public ModelAndView index() {
        	_mvShare.setViewName("user/index");
        	_mvShare.addObject("newSixs", _homeServiceImp.getDataLimitSix());
+       	_mvShare.addObject("allNewByCategories", _homeServiceImp.getAllDataNewByCategory());
     	return _mvShare;
     }
 }

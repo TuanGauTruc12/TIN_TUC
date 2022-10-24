@@ -29,8 +29,8 @@ public class NewDAO extends BaseDAO{
 	}
 	
 	public List<NewDTO> getDataLimitSix(){
-		String sql = "SELECT image, user.name AS author, new.title AS newTitle, property.title AS propertyTitle, new.approval_date AS approvalDate, property.slug AS propertySlug, new.slug AS newSlug, category.slug AS categorySlug FROM new, property, category, user WHERE new.id_property = property.id AND property.id_category = category.id AND category.id = new.id_category AND new.author = user.id ORDER BY RAND() LIMIT 6;";
-		List<NewDTO> list = jdbcTemplate.query(sql, new MapperNewDTO());
+		StringBuffer sb = sqlDataNewDTO().append(" ORDER BY RAND() LIMIT 6;");
+		List<NewDTO> list = jdbcTemplate.query(sb.toString(), new MapperNewDTO());
 		return list;
 	}
 }
