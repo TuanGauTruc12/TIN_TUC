@@ -1,9 +1,7 @@
 package TinTuc.DAO;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Repository;
 
 import TinTuc.DTO.MapperNewDTO;

@@ -14,29 +14,17 @@ import TinTuc.Entity.New;
 import TinTuc.Entity.Property;
 
 @Service
-public class HomeServiceImp implements HomeService{
-	
-	@Autowired
-	private CategoryDAO categoryDAO;
-	@Autowired 
-	private PropertyDAO propertyDAO;
-	@Autowired NewDAO newDAO;
-	
+public class HomeServiceImp extends BaseService implements HomeService {
+
 	@Override
 	public List<Category> getDataCategories() {
 		return categoryDAO.getDataCategories();
 	}
-	
+
 	@Override
 	public List<Property> getDataProperties() {
 		List<Property> list = propertyDAO.getAllProperty();
 		return list;
-	}
-
-	@Override
-	public Category getCategoryByID(String slug) {
-		
-		return null;
 	}
 
 	@Override

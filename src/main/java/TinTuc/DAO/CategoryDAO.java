@@ -1,9 +1,11 @@
 package TinTuc.DAO;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.instrument.classloading.jboss.JBossLoadTimeWeaver;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import TinTuc.DTO.MapperNewDTO;
@@ -15,24 +17,33 @@ import TinTuc.Entity.MapperCategory;
 public class CategoryDAO extends BaseDAO{
 	
 	public List<Category> getDataCategories(){
-		List<Category> categories = new ArrayList<Category>();
 		String sql = getAll("category").toString();
-		categories = jdbcTemplate.query(sql, new MapperCategory());
-		return categories;
+		return jdbcTemplate.query(sql, new MapperCategory());
 	}
 	
-	/*
-	public Category getCategoryBySlug(String slug) {
-		Category category = new Category();
-		String sqlString = "SELECT * FROM ";
-		return category;
+	public String getBreadcrumby(String categorySlug){
+		String sql = "SELECT title FROM category WHERE slug = '" + categorySlug +"';";
+		return jdbcTemplate.query(sql, new RowMapper<String>() {
+			@Override
+			public String mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getString(1);
+			}
+		}).get(0);
 	}
-	 */
+	
+	public List<NewDTO> getDataCategoryBySlug(String slug) {
+		StringBuffer sb = sqlDataNewDTO().append(" AND category.slug = '").append(slug).append("';");
+		return jdbcTemplate.query(sb.toString(), new MapperNewDTO());
+	}
+	
+	public List<NewDTO> getDataCategoryBySlug(String slug, int limit) {
+		StringBuffer sb = sqlDataNewDTO().append(" AND category.slug = '").append(slug).append("'").append(" ORDER BY RAND() ");
+		return jdbcTemplate.query(sb.append("LIMIT ").append(limit).toString(), new MapperNewDTO());
+	}
 	
 	public List<NewDTO> getAllDataNewByCategory(){
 		String sql = sqlDataNewDTO().append(" ORDER BY category.id;").toString();
-		List<NewDTO> list = jdbcTemplate.query(sql, new MapperNewDTO());
-		return list;
+		return jdbcTemplate.query(sql, new MapperNewDTO());
 	}
 	
 	@Override

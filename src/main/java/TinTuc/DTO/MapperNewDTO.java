@@ -19,6 +19,10 @@ public class MapperNewDTO implements RowMapper<NewDTO>{
 		newDTO.setNewSlug(rs.getString(7));
 		newDTO.setCategorySlug(rs.getString(8));
 		newDTO.setIdCategory(rs.getInt(9));
+		newDTO.setCategoryTitle(rs.getString(10));
+		newDTO.setView(rs.getInt(11));
+		newDTO.setSummary(rs.getString(12));
+		newDTO.setIdProperty(rs.getInt(13));
 		return newDTO;
 	}
 

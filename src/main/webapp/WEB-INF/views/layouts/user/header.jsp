@@ -87,12 +87,13 @@
 				<ul class="header--menu-links nav navbar-nav"
 					data-trigger="hoverIntent">
 					<c:forEach items="${ categories }" var="category">
-						<li class="dropdown"><a href="${ category.slug }" class="dropdown-toggle"
-							data-toggle="dropdown">${ category.title }</a>
+						<li class="dropdown">
+							<a href="<c:url value = "/${ category.slug }"/>">${ category.title }</a>
 							<ul class="dropdown-menu">
 								<c:forEach items="${properties }" var="property">
 									<c:if test="${category.id == property.id_category }">
-										<li><a href="${ category.slug }/${property.slug}">${ property.title }</a></li>
+										<li><a 
+										href="<c:url value = "/${ category.slug }/${property.slug}"/>">${ property.title }</a></li>
 									</c:if>
 								</c:forEach>
 							</ul></li>

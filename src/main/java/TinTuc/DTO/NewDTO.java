@@ -12,7 +12,35 @@ public class NewDTO {
 	private String newSlug;
 	private String categorySlug;
 	private int idCategory;
+	private String categoryTitle;
+	private int view;
+	private String summary;
+	private int idProperty;
 	
+	public int getIdProperty() {
+		return idProperty;
+	}
+	public void setIdProperty(int idProperty) {
+		this.idProperty = idProperty;
+	}
+	public String getSummary() {
+		return summary;
+	}
+	public void setSummary(String summary) {
+		this.summary = summary;
+	}
+	public int getView() {
+		return view;
+	}
+	public void setView(int view) {
+		this.view = view;
+	}
+	public String getCategoryTitle() {
+		return categoryTitle;
+	}
+	public void setCategoryTitle(String categoryTitle) {
+		this.categoryTitle = categoryTitle;
+	}
 	public int getIdCategory() {
 		return idCategory;
 	}
