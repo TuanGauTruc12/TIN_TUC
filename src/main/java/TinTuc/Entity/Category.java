@@ -5,17 +5,6 @@ public class Category extends BaseEntity{
 	private String slug;
 	private int chubien;
 	
-	public Category() {
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getTitle() {
 		return title;
 	}

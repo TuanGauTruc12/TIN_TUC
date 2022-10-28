@@ -18,17 +18,6 @@ public class New extends BaseEntity{
 	private int id_property;
 	private int id_category;
 	
-	public New() {
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
 	public String getTitle() {
 		return title;
 	}

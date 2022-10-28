@@ -17,7 +17,9 @@
 								<!-- Post Item Start -->
 								<div class="post--item post--layout-1 post--title-large">
 									<div class="post--img">
-										<a href="<c:url value = "/tin-tuc/${ nexSix.newSlug }"/>">
+										<a 
+											class = "thumb"
+											href="<c:url value = "/tin-tuc/${ nexSix.newSlug }"/>">
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ nexSix.image }"/>'
 											alt="">
@@ -78,7 +80,9 @@
 								<!-- Post Item Start -->
 								<div class="post--item post--layout-1 post--title-large">
 									<div class="post--img">
-										<a href="<c:url value = "/tin-tuc/${ newByCategory.newSlug }"/>">
+										<a 
+											class = "thumb"
+											href="<c:url value = "/tin-tuc/${ newByCategory.newSlug }"/>">
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ newByCategory.image }"/>'
 											alt="${ newByCategory.image }">

@@ -6,10 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.servlet.ModelAndView;
 
-import TinTuc.Services.USER.CategoryService;
 import TinTuc.Services.USER.CategoryServiceImp;
+import TinTuc.Services.USER.CommentLikeServiceImp;
 import TinTuc.Services.USER.HomeServiceImp;
-import TinTuc.Services.USER.PropertyService;
+import TinTuc.Services.USER.NewServiceImp;
 import TinTuc.Services.USER.PropertyServiceImp;
 
 @Controller
@@ -25,6 +25,15 @@ public class BaseController {
 	
 	@Autowired
 	protected HomeServiceImp _homeServiceImp;
+	
+	@Autowired
+	protected NewServiceImp _newServiceImp;
+	
+	@Autowired
+	protected CommentLikeServiceImp _commentLikeServiceImp;
+	
+	//@Autowired
+	//protected UserSe
 	
 	
 	@PostConstruct

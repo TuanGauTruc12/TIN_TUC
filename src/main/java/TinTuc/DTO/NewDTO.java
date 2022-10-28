@@ -1,39 +1,22 @@
 package TinTuc.DTO;
 
-import java.sql.Date;
-
-public class NewDTO {
-	private String image;
-	private String author;
-	private String newTitle;
-	private String propertyTitle;
-	private Date approvalDate;
-	private String propertySlug;
-	private String newSlug;
-	private String categorySlug;
+public class NewDTO extends BaseDTO{
 	private int idCategory;
+	private String newSlug;
 	private String categoryTitle;
-	private int view;
 	private String summary;
-	private int idProperty;
 	
-	public int getIdProperty() {
-		return idProperty;
+	public int getIdCategory() {
+		return idCategory;
 	}
-	public void setIdProperty(int idProperty) {
-		this.idProperty = idProperty;
+	public void setIdCategory(int idCategory) {
+		this.idCategory = idCategory;
 	}
-	public String getSummary() {
-		return summary;
+	public String getNewSlug() {
+		return newSlug;
 	}
-	public void setSummary(String summary) {
-		this.summary = summary;
-	}
-	public int getView() {
-		return view;
-	}
-	public void setView(int view) {
-		this.view = view;
+	public void setNewSlug(String newSlug) {
+		this.newSlug = newSlug;
 	}
 	public String getCategoryTitle() {
 		return categoryTitle;
@@ -41,58 +24,10 @@ public class NewDTO {
 	public void setCategoryTitle(String categoryTitle) {
 		this.categoryTitle = categoryTitle;
 	}
-	public int getIdCategory() {
-		return idCategory;
+	public String getSummary() {
+		return summary;
 	}
-	public void setIdCategory(int idCategory) {
-		this.idCategory = idCategory;
-	}
-	public String getCategorySlug() {
-		return categorySlug;
-	}
-	public void setCategorySlug(String categorySlug) {
-		this.categorySlug = categorySlug;
-	}
-	public String getImage() {
-		return image;
-	}
-	public void setImage(String image) {
-		this.image = image;
-	}
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getNewTitle() {
-		return newTitle;
-	}
-	public void setNewTitle(String newTitle) {
-		this.newTitle = newTitle;
-	}
-	public String getPropertyTitle() {
-		return propertyTitle;
-	}
-	public void setPropertyTitle(String propertyTitle) {
-		this.propertyTitle = propertyTitle;
-	}
-	public Date getApprovalDate() {
-		return approvalDate;
-	}
-	public void setApprovalDate(Date approvalDate) {
-		this.approvalDate = approvalDate;
-	}
-	public String getPropertySlug() {
-		return propertySlug;
-	}
-	public void setPropertySlug(String propertySlug) {
-		this.propertySlug = propertySlug;
-	}
-	public String getNewSlug() {
-		return newSlug;
-	}
-	public void setNewSlug(String newSlug) {
-		this.newSlug = newSlug;
+	public void setSummary(String summary) {
+		this.summary = summary;
 	}
 }

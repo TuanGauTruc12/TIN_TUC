@@ -27,7 +27,7 @@
 
     <!-- ==== Font Awesome ==== -->
     <link rel="stylesheet" href="<c:url value="/public/user/frontend/css/font-awesome.min.css"/>" />
-
+    
     <!-- ==== Bootstrap Framework ==== -->
     <link rel="stylesheet" href="<c:url value="/public/user/frontend/css/bootstrap.min.css"/>"/>
 

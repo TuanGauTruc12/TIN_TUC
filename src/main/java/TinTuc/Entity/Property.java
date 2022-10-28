@@ -5,14 +5,6 @@ public class Property extends BaseEntity{
 	private String slug;
 	private int id_category;
 	
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	public String getTitle() {
 		return title;
 	}

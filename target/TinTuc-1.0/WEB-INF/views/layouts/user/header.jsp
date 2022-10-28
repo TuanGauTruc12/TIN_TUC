@@ -55,7 +55,7 @@
 			<div class="header--logo float--left float--sm-none text-sm-center">
 				<h1 class="h1">
 					<a href="http://localhost/KCNEW" class="btn-link"> <video
-							autoplay loop muted plays-inline width="60%">
+							autoplay loop muted width="50%">
 							<source
 								src="<c:url value = "/public/user/frontend/img/KCN (online-video-cutter.com).mp4"/>"
 								style="" />
@@ -64,18 +64,6 @@
 				</h1>
 			</div>
 			<!-- Header Logo End -->
-
-			<!-- Header Ad Start -->
-			<div class="header--ad float--right float--sm-none hidden-xs"
-				style="width: 60%; margin-top: 60px">
-				<a
-					href="https://masterisehomes.com/the-rivus/?utm_source=adtima&utm_medium=impression&utm_campaign=rivus-adtima-impression-phase1-na-cpd-8B115F30-mastheadtoppc">
-					<img
-					src="<c:url value = "/public/user/frontend/img/ads-img/728x90_baner1.png"/>"
-					alt="Advertisement" />
-				</a>
-			</div>
-			<!-- Header Ad End -->
 		</div>
 	</div>
 	<!-- Header Mainbar End -->
@@ -99,12 +87,13 @@
 				<ul class="header--menu-links nav navbar-nav"
 					data-trigger="hoverIntent">
 					<c:forEach items="${ categories }" var="category">
-						<li class="dropdown"><a href="${ category.slug }" class="dropdown-toggle"
-							data-toggle="dropdown">${ category.title }</a>
+						<li class="dropdown">
+							<a href="<c:url value = "/${ category.slug }"/>">${ category.title }</a>
 							<ul class="dropdown-menu">
 								<c:forEach items="${properties }" var="property">
 									<c:if test="${category.id == property.id_category }">
-										<li><a href="${ category.slug }/${property.slug}">${ property.title }</a></li>
+										<li><a 
+										href="<c:url value = "/${ category.slug }/${property.slug}"/>">${ property.title }</a></li>
 									</c:if>
 								</c:forEach>
 							</ul></li>
@@ -159,7 +148,6 @@
 	<div class="container">
 		<div class="title">
 			<h2>Tin mới cập nhật</h2>
-			<
 		</div>
 
 		<div class="news-updates--list" data-marquee="true">

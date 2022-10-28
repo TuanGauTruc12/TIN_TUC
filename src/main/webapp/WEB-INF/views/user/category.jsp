@@ -31,6 +31,7 @@
 								<div class="post--item post--layout-1 post--title-large">
 									<div class="post--img">
 										<a
+											class = "thumb"
 											href="<c:url value = "/tin-tuc/${ categoryBySlugsLimit.newSlug }"/>">
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ categoryBySlugsLimit.image }"/>'
@@ -94,6 +95,7 @@
 								<div class="post--item post--layout-1 post--title-large">
 									<div class="post--img">
 										<a
+											class = "thumb"
 											href="<c:url value = "/tin-tuc/${ categoryBySlug.newSlug }"/>">
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ categoryBySlug.image }"/>'

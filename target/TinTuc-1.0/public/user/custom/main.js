@@ -1,7 +1,8 @@
+/*
+
 let dateNow = new Date();
 document.getElementById('container__date').innerText = `Hôm nay: ${dateNow.getDay()} - ${dateNow.getMonth()+1} - ${dateNow.getFullYear()};
 
-/*
 navigator.geolocation.getCurrentPosition(async function (position) {
 	let lat = position.coords.latitude;
 	let lon = position.coords.longitude;
@@ -14,3 +15,6 @@ navigator.geolocation.getCurrentPosition(async function (position) {
 	document.getElementById('container__tempera').innerText = temp;
 });
 */
+ 
+ let category = document.getElementById("category").innerHTML;
+ 

@@ -18,4 +18,23 @@ public class UserDAO extends BaseDAO{
 	public List<User> getAllUser(){
 		return jdbcTemplate.query(getAll("user").toString(), new MapperUser());
 	}
+	
+	public User logIn(String email, String password) {
+		String sql = "SELECT * FROM user WHERE email = '" + email + "' AND [password] = '" + password + "' LIMIT 1";
+		return jdbcTemplate.query(sql, new MapperUser()).get(0);
+	}
+	
+	public void signUp(String name, String email, String password, String email_accuracy) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("INSERT INTO user (name, email, password, email_accuracy) VALUES ('");
+		sb.append(name);
+		sb.append("', '");
+		sb.append(email);
+		sb.append("', '");
+		sb.append(password);
+		sb.append("', '");
+		sb.append(email_accuracy);
+		sb.append("')");
+		jdbcTemplate.execute(sb.toString());
+	}
 }
