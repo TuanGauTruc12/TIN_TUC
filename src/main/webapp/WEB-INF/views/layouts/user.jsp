@@ -45,7 +45,7 @@
 
 	<!-- ==== Custom css === -->
     <link rel="stylesheet" href="<c:url value="/public/user/frontend/css/custom.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/public/user/custom/style.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/public/custom/css/style.css"/>" />
     
 <decorator:head />
 </head>
@@ -59,55 +59,6 @@
 		<%@include file="/WEB-INF/views/layouts/user/footer.jsp"%>
 
 	</div>
-<!-- Sticky Social Start -->
-    <div id="stickySocial" class="sticky--right">
-        <ul class="nav">
-            <li>
-                <a href="https://www.facebook.com/ngoccam651">
-                    <i class="fa fa-facebook"></i>
-                    <span>Follow Us On Facebook</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-twitter"></i>
-                    <span>Follow Us On Twitter</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-google-plus"></i>
-                    <span>Follow Us On Google Plus</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-rss"></i>
-                    <span>Follow Us On RSS</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-vimeo"></i>
-                    <span>Follow Us On Vimeo</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://www.youtube.com/channel/UCk8UM8PAAV6PTn3eNuMthRQ">
-                    <i class="fa fa-youtube-play"></i>
-                    <span>Follow Us On Youtube Play</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fa fa-linkedin"></i>
-                    <span>Follow Us On LinkedIn</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- Sticky Social End -->
-
     <!-- Back To Top Button Start -->
     <div id="backToTop">
         <a href="#"><i class="fa fa-angle-double-up"></i></a>
@@ -156,7 +107,7 @@
     <!-- ==== Main JavaScript ==== -->
     <script src="<c:url value="/public/user/frontend/js/main.js"/>"></script>
 	<!-- ==== Custum JavaScript -->
-    <script src="<c:url value="/public/user/custom/app.js"/>"></script>
+    <script src="<c:url value="/public/custom/js/main.js"/>"></script>
 	
 </body>
 </html>

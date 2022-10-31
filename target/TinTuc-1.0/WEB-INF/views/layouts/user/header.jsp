@@ -19,17 +19,44 @@
 				<!-- Header Topbar Info End -->
 			</div>
 
+
 			<div class="float--right float--xs-none text-xs-center">
 				<!-- Header Topbar Action Start -->
-				<ul class="header--topbar-action nav">
-					<li><a href="http://localhost/KCNEW/login"><i
-							class="fa fm fa-user-o"></i>Đăng nhập/Đăng ký</a></li>
-				</ul>
+
+				<c:if test="${ empty user }">
+					<ul class="header--topbar-action nav">
+						<li><a class="btn bg--color-1"
+							href='<c:url value ="/login-signup/login/"/>'><i
+								class="fa fm fa-user-o"></i>Đăng nhập/Đăng ký</a></li>
+					</ul>
+				</c:if>
+
+				<c:if test="${ not empty user }">
+
+					<ul class="header--menu-links nav navbar-nav"
+						data-trigger="hoverIntent">
+						<li class="dropdown">
+							<span class="btn">${ user.name }</span>
+							<ul class="dropdown-menu">
+								<c:if test="${ user.id_role == 0 }">
+									<li><a href="<c:url value = "/login-signup/signOut/"/>">
+											Đăng xuất </a></li>
+								</c:if>
+
+								<c:if test="${ user.id_role != 0 }">
+									<li><a href="<c:url value = "/admin/${ user.id_role }"/>">
+											Trang quản trị </a></li>
+
+									<li><a href="<c:url value = "/login-signup/signOut/"/>">
+											Đăng xuất </a></li>
+								</c:if>
+							</ul>
+						</li>
+					</ul>
+
+				</c:if>
 				<!-- Header Topbar Action End -->
 
-				<!-- Header Topbar Language Start -->
-
-				<!-- Header Topbar Language End -->
 
 				<!-- Header Topbar Social Start -->
 				<ul class="header--topbar-social nav hidden-sm hidden-xxs">
@@ -87,13 +114,13 @@
 				<ul class="header--menu-links nav navbar-nav"
 					data-trigger="hoverIntent">
 					<c:forEach items="${ categories }" var="category">
-						<li class="dropdown">
-							<a href="<c:url value = "/${ category.slug }"/>">${ category.title }</a>
+						<li class="dropdown"><a
+							href="<c:url value = "/${ category.slug }"/>">${ category.title }</a>
 							<ul class="dropdown-menu">
 								<c:forEach items="${properties }" var="property">
 									<c:if test="${category.id == property.id_category }">
-										<li><a 
-										href="<c:url value = "/${ category.slug }/${property.slug}"/>">${ property.title }</a></li>
+										<li><a
+											href="<c:url value = "/${ category.slug }/${property.slug}"/>">${ property.title }</a></li>
 									</c:if>
 								</c:forEach>
 							</ul></li>
@@ -153,16 +180,15 @@
 		<div class="news-updates--list" data-marquee="true">
 			<ul class="nav">
 				<c:forEach items="${ newUpdates }" var="newUpdate">
-				<li>
-				
-					<h3 class="h3">
-						<a
-							href='<c:url value = "/tin-tuc/${ newUpdate.slug }"/>'>${newUpdate.title }</a>
-					</h3>
-				
-				</li>
+					<li>
+
+						<h3 class="h3">
+							<a href='<c:url value = "/tin-tuc/${ newUpdate.slug }"/>'>${newUpdate.title }</a>
+						</h3>
+
+					</li>
 				</c:forEach>
-			
+
 			</ul>
 		</div>
 	</div>

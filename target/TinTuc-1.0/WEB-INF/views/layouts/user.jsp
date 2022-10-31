@@ -45,7 +45,7 @@
 
 	<!-- ==== Custom css === -->
     <link rel="stylesheet" href="<c:url value="/public/user/frontend/css/custom.css"/>" />
-    <link rel="stylesheet" href="<c:url value="/public/user/custom/style.css"/>" />
+    <link rel="stylesheet" href="<c:url value="/public/custom/css/style.css"/>" />
     
 <decorator:head />
 </head>
@@ -156,7 +156,7 @@
     <!-- ==== Main JavaScript ==== -->
     <script src="<c:url value="/public/user/frontend/js/main.js"/>"></script>
 	<!-- ==== Custum JavaScript -->
-    <script src="<c:url value="/public/user/custom/app.js"/>"></script>
+    <script src="<c:url value="/public/custom/js/app.js"/>"></script>
 	
 </body>
 </html>

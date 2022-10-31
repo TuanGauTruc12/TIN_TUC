@@ -49,14 +49,14 @@ public class Comment_LikeDAO extends BaseDAO{
 		jdbcTemplate.execute(sb.toString());
 	}
 	
-	public void updateLikeNew(int idNew, int idUser, boolean like) {
+	public void updateLikeNew(String newSlug, int idUser, boolean like) {		
 		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE likes SET like = ");
+		sb.append("UPDATE likes SET likes.like = ");
 		sb.append(like);
-		sb.append(" WHERE AND likes.id_new = new.id AND likes.id_new = ");
-		sb.append(idNew);
-		sb.append(" AND likes.id_user = ");
-		sb.append(idUser);
+		sb.append(" WHERE likes.id IN (SELECT likes.id FROM new, likes, user WHERE new.id = likes.id_new AND likes.id_user = user.id AND new.slug = '");
+		sb.append(newSlug);
+		sb.append("' AND likes.id_user = ");
+		sb.append(idUser).append(")");
 		jdbcTemplate.execute(sb.toString());
 	}
 	
@@ -69,23 +69,24 @@ public class Comment_LikeDAO extends BaseDAO{
 		sb.append(", ");
 		sb.append(idNew);
 		sb.append(");");
+		jdbcTemplate.execute(sb.toString());
 	}
 	
 	
-	public List<Like> checkDataLike(int idNew, int idUser){
-		StringBuffer sb = getAll("likes").append(", new ").append("WHERE likes.id_user = user.id ");
+	public List<Like> checkDataLike(String slug, int idUser){
+		StringBuffer sb = getAll("likes").append(", new, user ").append("WHERE likes.id_user = user.id ");
 		sb.append("AND likes.id_new = new.id");
-		sb.append(" AND likes.id_new = ");
-		sb.append(idNew).append("AND likes.id_user = ").append(idUser);
+		sb.append(" AND likes.like = 1 AND new.slug = '");
+		sb.append(slug).append("' AND likes.id_user = ").append(idUser);
 		sb.append(" LIMIT 1");
 		return jdbcTemplate.query(sb.toString(), new MapperLike());
 	}
 	
-	public List<Comment> checkDataComment(int idNew, int idUser){
+	public List<Comment> checkDataComment(String slug, int idUser){
 		StringBuffer sb = getAll("comments").append(", new ").append("WHERE comments.id_user = user.id ");
 		sb.append("AND comments.id_new = new.id");
-		sb.append(" AND comments.id_new = ");
-		sb.append(idNew).append("AND comments.id_user = ").append(idUser);
+		sb.append(" AND new.slug = ");
+		sb.append(slug).append("AND comments.id_user = ").append(idUser);
 		return jdbcTemplate.query(sb.toString(), new MapperComment());
 	}
 }

@@ -24,6 +24,7 @@ public class MapperNewDetailDTO implements RowMapper<NewDetailDTO>{
 		newDetailDTO.setImage(rs.getString(12));
 		newDetailDTO.setAuthorID(rs.getInt(13));
 		newDetailDTO.setIdProperty(rs.getInt(14));
+		newDetailDTO.setNewSlug(rs.getString(15));
 		return newDetailDTO;
 	}
 	

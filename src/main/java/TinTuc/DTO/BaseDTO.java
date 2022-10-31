@@ -12,8 +12,15 @@ public class BaseDTO {
 	private String categorySlug;
 	private String categoryTitle;
 	private int view;
+	private String newSlug;
 	private int idProperty;
 	
+	public String getNewSlug() {
+		return newSlug;
+	}
+	public void setNewSlug(String newSlug) {
+		this.newSlug = newSlug;
+	}
 	public int getIdProperty() {
 		return idProperty;
 	}

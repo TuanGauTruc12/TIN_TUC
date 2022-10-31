@@ -2,6 +2,9 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 <c:set var="newTitle" value="${ newDetail.newTitle }"></c:set>
+<c:set var="countComment" value="${ newDetail.countComment }"></c:set>
+<c:set var="newSlug" value="${ newDetail.newSlug }"></c:set>
+<c:set var="idUser" value="${ user.id }"></c:set>
 <title>${ newTitle }</title>
 <body>
 	<!-- Main Breadcrumb Start -->
@@ -34,18 +37,31 @@
 						<!-- Post Item Start -->
 						<div class="post--item post--single post--title-largest mt-2">
 							<div class="post--img" style="width: 50%; margin: 0 auto;">
-								<a class="thumb"><img
-									src="<c:url value = "/public/user/uploads/tintuc/${ newDetail.image }"/>"
-									alt=""></a> <a href="#" class="icon"><i
-									class="fa fa-heartbeat" aria-hidden="true"></i></a>
+
+								<c:if test="${not empty user }">
+									<a class="thumb"><img
+										src="<c:url value = "/public/user/uploads/tintuc/${ newDetail.image }"/>"
+										alt=""></a>
+									<a href="<c:url value = "/likes/${newSlug}/${idUser}"/>"
+										class="icon"><i class="fa fa-heartbeat" aria-hidden="true"></i>
+									</a>
+								</c:if>
+								<c:if test="${ empty user }">
+									<a class="thumb"><img
+										src="<c:url value = "/public/user/uploads/tintuc/${ newDetail.image }"/>"
+										alt=""></a>
+									<a href="<c:url value = "/login-signup/login/"/>" class="icon"><i
+										class="fa fa-heartbeat" aria-hidden="true"></i> </a>
+								</c:if>
 							</div>
 
 							<div class="post--info">
-								<ul class="nav meta">
+								<ul class="nav meta mt-1">
 									<li><span>${ newDetail.author }</span></li>
 									<li><span>${ newDetail.approvalDate }</span></li>
 									<li><span><i class="fa fm fa-eye"></i>${ newDetail.view }</span></li>
-									<li><i class="fa fm fa-comments-o"></i>${ newDetail.countComment }</li>
+									<li><span><i class="fa fm fa-comments-o"></i>${ countComment }</span></li>
+									<li><span><i class="fa fm fa-heart"></i>${ newDetail.likes }</span></li>
 								</ul>
 
 								<div class="title">
@@ -86,33 +102,33 @@
 
 								<c:forEach items="${ newByAuthors }" var="newByAuthor">
 
-								<li class="col-lg-4 col-md-6 col-sm-12 ptop--30 pbottom--30">
-									<!-- Post Item Start -->
-									<div class="post--item" style = "text-align: left;">
-										<div class="post--img">
-											<a style = "text-align: center; max-width: none; width: 100%;"
-												href="<c:url value = "/tin-tuc/${ newByAuthor.newSlug }"/>"
-												class = "thumbnail"><img
-												src="<c:url value = "/public/user/uploads/tintuc/${ newByAuthor.image }"/>"
-												alt="${newByAuthor.image }"></a>
+									<li class="col-lg-4 col-md-6 col-sm-12 ptop--30 pbottom--30">
+										<!-- Post Item Start -->
+										<div class="post--item" style="text-align: left;">
+											<div class="post--img">
+												<a style="text-align: center; max-width: none; width: 100%;"
+													href="<c:url value = "/tin-tuc/${ newByAuthor.newSlug }"/>"
+													class="thumbnail"><img
+													src="<c:url value = "/public/user/uploads/tintuc/${ newByAuthor.image }"/>"
+													alt="${newByAuthor.image }"> </a>
 
-											<div class="post--info">
-												<ul class="nav meta">
-													<li><span>${ newByAuthor.author }</span</li>
-													<li><span>${ newByAuthor.approvalDate }</span></li>
-												</ul>
+												<div class="post--info">
+													<ul class="nav meta">
+														<li><span>${ newByAuthor.author }</span</li>
+														<li><span>${ newByAuthor.approvalDate }</span></li>
+													</ul>
 
-												<div class="title">
-													<h3 class="h4">
-														<a
-															href="<c:url value = "/tin-tuc/${ newByAuthor.newSlug }"/>"
-															class="btn-link">${ newByAuthor.newTitle }</a>
-													</h3>
+													<div class="title">
+														<h3 class="h4">
+															<a
+																href="<c:url value = "/tin-tuc/${ newByAuthor.newSlug }"/>"
+																class="btn-link">${ newByAuthor.newTitle }</a>
+														</h3>
+													</div>
 												</div>
 											</div>
-										</div>
-									</div> <!-- Post Item End -->
-								</li>
+										</div> <!-- Post Item End -->
+									</li>
 								</c:forEach>
 							</ul>
 						</div>
@@ -130,45 +146,49 @@
 							<!-- Post Items Start -->
 							<div class="post--items post--items-2" data-ajax-content="outer">
 								<ul class="nav row" data-ajax-content="inner">
-									<c:forEach items="${ newByProperties }" var = "newByProperty">
-									
-									<li class="col-lg-4 col-md-6 col-sm-12 pbottom--30">
-										<!-- Post Item Start -->
-										<div class="post--item post--layout-1">
-											<div class="post--img">
-												<a
-													href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>"
-													class="thumbnail"><img
-													src="<c:url value = "/public/user/uploads/tintuc/${ newByProperty.image }"/>" alt="${ newByProperty.image }"></a> <a
-													href="<c:url value = "/${newByProperty.categorySlug }/${newByProperty.propertySlug }"/>" class="cat">${newByProperty.propertyTitle }</a>
+									<c:forEach items="${ newByProperties }" var="newByProperty">
 
-												<div class="post--info">
-													<ul class="nav meta">
-														<li><span>${ newByProperty.author }</span></li>
-														<li><span>${ newByProperty.approvalDate }</span></li>
-													</ul>
+										<li class="col-lg-4 col-md-6 col-sm-12 pbottom--30">
+											<!-- Post Item Start -->
+											<div class="post--item post--layout-1">
+												<div class="post--img">
+													<a
+														href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>"
+														class="thumbnail"><img
+														src="<c:url value = "/public/user/uploads/tintuc/${ newByProperty.image }"/>"
+														alt="${ newByProperty.image }"></a> <a
+														href="<c:url value = "/${newByProperty.categorySlug }/${newByProperty.propertySlug }"/>"
+														class="cat">${newByProperty.propertyTitle }</a>
 
-													<div class="title">
-														<h3 class="h4">
-															<a
-																href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>"
-																class="btn-link">${newByProperty.newTitle }</a>
-														</h3>
+													<div class="post--info">
+														<ul class="nav meta">
+															<li><span>${ newByProperty.author }</span></li>
+															<li><span>${ newByProperty.approvalDate }</span></li>
+														</ul>
+
+														<div class="title">
+															<h3 class="h4">
+																<a
+																	href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>"
+																	class="btn-link">${newByProperty.newTitle }</a>
+															</h3>
+														</div>
 													</div>
 												</div>
-											</div>
 
-											<div class="post--content">
-												<p>${ newByProperty.summary }</p>
-											</div>
+												<div class="post--content">
+													<p>${ newByProperty.summary }</p>
+												</div>
 
-											<div class="post--action">
-												<a href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>">Đọc tiếp</a>
-											</div>
-										</div> <!-- Post Item End -->
-									</li>
+												<div class="post--action">
+													<a
+														href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>">Đọc
+														tiếp</a>
+												</div>
+											</div> <!-- Post Item End -->
+										</li>
 									</c:forEach>
-									
+
 								</ul>
 
 								<!-- Preloader Start -->
@@ -185,7 +205,7 @@
 						<div class="comment--list pd--30-0">
 							<!-- Post Items Title Start -->
 							<div class="post--items-title">
-								<h2 class="h4">${ newDetail.countComment } bình luận</h2>
+								<h2 class="h4">${ countComment }bình luận</h2>
 
 								<i class="icon fa fa-comments-o"></i>
 							</div>
@@ -221,21 +241,28 @@
 							<!-- Post Items Title End -->
 
 							<div class="comment-respond">
-								<form action="" data-form="validate">
+								<div data-form="validate">
 									<p>Đừng lo ! Địa chỉ email của bạn sẽ không được công bố
 										(*).</p>
 
 									<div class="row">
 										<div class="col">
-											<label> <span>Comment *</span> <textarea
-													name="comment" id="comment" class="form-control" required></textarea>
+											<label> <span>Comment *</span> <textarea id="comment" class="form-control" required></textarea>
 											</label>
 										</div>
-										<div class="col-md-12">
-											<button type="submit" class="btn btn-primary">Đăng</button>
+										<div class="col-12">
+											<c:if test="${ not empty user }">
+												<button
+													class="btn btn-primary" onclick="comment(`${ newSlug }`, `${ idUser }`)">
+													Đăng</button>
+											</c:if>
+											<c:if test="${ empty user }">
+												<a href="<c:url value = "/login-signup/login/"/>"
+													class="btn btn-primary">Đăng</a>
+											</c:if>
 										</div>
 									</div>
-								</form>
+								</div>
 							</div>
 						</div>
 						<!-- Comment Form End -->

@@ -6,10 +6,12 @@ import org.springframework.stereotype.Service;
 
 import TinTuc.DTO.NewDTO;
 import TinTuc.DTO.NewDetailDTO;
+import TinTuc.Entity.New;
 
 @Service
 public interface NewService {
 	public NewDetailDTO getNewDetailBySlug(String slug);
 	public List<NewDTO> getNewByAuthor(int author);
 	public List<NewDTO> getNewByProperty(int propertyID);
+	public New getNewBySlug(String slug);
 }

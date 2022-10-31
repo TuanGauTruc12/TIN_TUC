@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 <c:set var="newTitle" value="${ newDetail.newTitle }"></c:set>
+<c:set var="countComment" value="${ newDetail.countComment }"></c:set>
 <title>${ newTitle }</title>
 <body>
 	<!-- Main Breadcrumb Start -->
@@ -34,18 +35,30 @@
 						<!-- Post Item Start -->
 						<div class="post--item post--single post--title-largest mt-2">
 							<div class="post--img" style="width: 50%; margin: 0 auto;">
-								<a href="#" class="thumb"><img
+							
+							<c:if test="${not empty user }">
+								<a class="thumb"><img
 									src="<c:url value = "/public/user/uploads/tintuc/${ newDetail.image }"/>"
-									alt=""></a> <a href="#" class="icon"><i
-									class="fa fa-heartbeat" aria-hidden="true"></i></a>
+									alt=""></a> <a href="<c:url value = "/likes/${newDetail.slug}/${user.id}"/>" class="icon"><i
+									class="fa fa-heartbeat" aria-hidden="true"></i>
+								</a>
+							</c:if>
+							<c:if test="${ empty user }">
+								<a class="thumb"><img
+									src="<c:url value = "/public/user/uploads/tintuc/${ newDetail.image }"/>"
+									alt=""></a> <a href="<c:url value = "/login-signup/login/"/>" class="icon"><i
+									class="fa fa-heartbeat" aria-hidden="true"></i>
+								</a>
+							</c:if>
 							</div>
 
 							<div class="post--info">
-								<ul class="nav meta">
+								<ul class="nav meta mt-1">
 									<li><span>${ newDetail.author }</span></li>
 									<li><span>${ newDetail.approvalDate }</span></li>
 									<li><span><i class="fa fm fa-eye"></i>${ newDetail.view }</span></li>
-									<li><a href="#"><i class="fa fm fa-comments-o"></i>${ newDetail.countComment }</a></li>
+									<li><span><i class="fa fm fa-comments-o"></i>${ countComment }</span></li>
+									<li><span><i class="fa fm fa-heart"></i>${ newDetail.likes }</span></li>
 								</ul>
 
 								<div class="title">
@@ -92,9 +105,10 @@
 										<div class="post--img">
 											<a style = "text-align: center; max-width: none; width: 100%;"
 												href="<c:url value = "/tin-tuc/${ newByAuthor.newSlug }"/>"
-												class="thumbnail"><img
+												class = "thumbnail"><img
 												src="<c:url value = "/public/user/uploads/tintuc/${ newByAuthor.image }"/>"
-												alt="${newByAuthor.image }"></a>
+												alt="${newByAuthor.image }">
+											</a>
 
 											<div class="post--info">
 												<ul class="nav meta">
@@ -140,7 +154,7 @@
 													href="<c:url value = "/tin-tuc/${ newByProperty.newSlug }"/>"
 													class="thumbnail"><img
 													src="<c:url value = "/public/user/uploads/tintuc/${ newByProperty.image }"/>" alt="${ newByProperty.image }"></a> <a
-													href="<c:url value = "/${newByProperty.categorySlug }/${newByProperty }"/>" class="cat">${newByProperty.propertyTitle }</a> <a class="icon"><i class="fa fa-flash"></i></a>
+													href="<c:url value = "/${newByProperty.categorySlug }/${newByProperty.propertySlug }"/>" class="cat">${newByProperty.propertyTitle }</a>
 
 												<div class="post--info">
 													<ul class="nav meta">
@@ -185,7 +199,7 @@
 						<div class="comment--list pd--30-0">
 							<!-- Post Items Title Start -->
 							<div class="post--items-title">
-								<h2 class="h4">${ newDetail.countComment } bình luận</h2>
+								<h2 class="h4">${ countComment } bình luận</h2>
 
 								<i class="icon fa fa-comments-o"></i>
 							</div>

@@ -25,6 +25,10 @@ public class NewDAO extends BaseDAO{
 		return jdbcTemplate.query(getAll("new").toString(), new MapperNew());
 	}
 	
+	public New getNewBySlug(String slug) {
+		return jdbcTemplate.query(getAll("new").append(" WHERE new.slug = '").append(slug).append("' LIMIT 1;").toString(), new MapperNew()).get(0);
+	}
+	
 	public List<New> getDataNewUpdate(){
 		String sql = getAll("new ").append("ORDER BY `new`.`approval_date` DESC LIMIT 10;").toString();
 		return jdbcTemplate.query(sql, new MapperNew());
@@ -43,7 +47,7 @@ public class NewDAO extends BaseDAO{
 	}
 	
 	public NewDetailDTO getNewDetailBySlug(String slug) {
-		String sql = "SELECT user.name AS author, new.title AS newTitle, property.title AS propertyTitle, new.approval_date AS approvalDate, category.slug AS categorySlug, property.slug AS propertySlug, category.title AS categoryTitle, new.view AS view, new.content AS content, (SELECT COUNT(likes.like) FROM new, likes WHERE new.id = likes.id_new AND new.slug = '" + slug + "') AS likes, (SELECT COUNT(comments.content) FROM comments, new WHERE new.id = comments.id_new AND new.slug = '" + slug + "') AS countComment, new.image, new.author AS authorID, new.id_property AS idProperty FROM user, new, category, property WHERE user.id = new.author AND property.id = new.id_property AND new.id_category = category.id AND new.status = 1 AND new.slug = '" + slug + "' LIMIT 1;";
+		String sql = "SELECT user.name AS author, new.title AS newTitle, property.title AS propertyTitle, new.approval_date AS approvalDate, category.slug AS categorySlug, property.slug AS propertySlug, category.title AS categoryTitle, new.view AS view, new.content AS content, (SELECT COUNT(likes.like) FROM new, likes WHERE new.id = likes.id_new AND new.slug = '" + slug + "' AND likes.like = true) AS likes, (SELECT COUNT(comments.id) FROM comments, new WHERE new.id = comments.id_new AND new.slug = '" + slug + "' AND new.status = 1) AS countComment, new.image, new.author AS authorID, new.id_property AS idProperty, new.slug AS newSlug FROM user, new, category, property WHERE user.id = new.author AND property.id = new.id_property AND new.id_category = category.id AND new.status = 1 AND new.slug = '" + slug + "' LIMIT 1;";
 		return jdbcTemplate.query(sql, new MapperNewDetailDTO()).get(0);
 	}
 	

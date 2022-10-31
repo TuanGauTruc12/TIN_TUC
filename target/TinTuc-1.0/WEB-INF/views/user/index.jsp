@@ -18,16 +18,13 @@
 								<div class="post--item post--layout-1 post--title-large">
 									<div class="post--img">
 										<a 
-											class = "thumbnail"
+											class = "thumb"
 											href="<c:url value = "/tin-tuc/${ nexSix.newSlug }"/>">
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ nexSix.image }"/>'
 											alt="">
-										</a> <a
-											href="<c:url value = "/${nexSix.categorySlug}/${ nexSix.propertySlug }"/>"
-											class="cat">${ nexSix.propertyTitle }</a> <a href="#"
-											class="icon"><i class="fa-regular fa-heart"></i></a>
-
+										</a>
+									
 										<div class="post--info">
 											<ul class="nav meta">
 												<li><span class="d-inline bg-black">${ nexSix.author }</span></li>
@@ -81,16 +78,13 @@
 								<div class="post--item post--layout-1 post--title-large">
 									<div class="post--img">
 										<a 
-											class = "thumbnail"
+											class = "thumb"
 											href="<c:url value = "/tin-tuc/${ newByCategory.newSlug }"/>">
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ newByCategory.image }"/>'
 											alt="${ newByCategory.image }">
-										</a> <a
-											href="<c:url value = "/${newByCategory.categorySlug}/${ newByCategory.propertySlug }"/>"
-											class="cat">${ newByCategory.propertyTitle }</a> <a href="#"
-											class="icon"><i class="fa-regular fa-heart"></i></a>
-
+										</a>
+										
 										<div class="post--info">
 											<ul class="nav meta">
 												<li><span class="d-inline bg-black">${ newByCategory.author }</span></li>

@@ -1,22 +1,34 @@
 package TinTuc.Controller.USER;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import TinTuc.Entity.Like;
+
 @Controller
 public class CommentLikeController extends BaseController{
-	@RequestMapping("/likes/{idNew}/{idUser}")
-	public String likeNew(HttpServletRequest request,@PathVariable int idNew, @PathVariable int idUser ) {
-		/*
-		if(_commentLikeServiceImp.checkDataLike(idNew, idUser).size() > 0 && _commentLikeServiceImp.checkDataLike(idNew, idUser).get(0) != null) {
-			_commentLikeServiceImp.updateLikeNew(idNew, idUser, true);
+	@RequestMapping("/likes/{newSlug}/{idUser}")
+	public String likeNew(HttpServletRequest request,@PathVariable String newSlug, @PathVariable int idUser ) {
+		List<Like> likes = _commentLikeServiceImp.checkDataLike(newSlug, idUser);
+		int idNew = _newServiceImp.getNewBySlug(newSlug).getId();
+		if(likes.size() > 0 && likes.get(0) != null) {
+			_commentLikeServiceImp.updateLikeNew(newSlug, idUser);
 		}else {
 			_commentLikeServiceImp.insertLikeNew(idNew, idUser);
 		}
-		*/
+		return "redirect:" + request.getHeader("Referer");
+	}
+	
+	@RequestMapping("/comments/{newSlug}/{idUser}/{contentComment}")
+	public String commentNew(HttpServletRequest request, @PathVariable String newSlug,@PathVariable int idUser, @PathVariable String contentComment) {
+		System.out.println(contentComment);
+		System.out.println(newSlug);
+		System.out.println(idUser);
 		return "redirect:" + request.getHeader("Referer");
 	}
 }

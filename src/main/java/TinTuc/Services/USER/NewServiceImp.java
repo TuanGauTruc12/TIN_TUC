@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import TinTuc.DTO.NewDTO;
 import TinTuc.DTO.NewDetailDTO;
+import TinTuc.Entity.New;
 
 @Service
 public class NewServiceImp extends BaseService implements NewService{
@@ -23,5 +24,10 @@ public class NewServiceImp extends BaseService implements NewService{
 	@Override
 	public List<NewDTO> getNewByProperty(int propertyID) {
 		return newDAO.getNewByProperty(propertyID);
+	}
+
+	@Override
+	public New getNewBySlug(String slug) {
+		return newDAO.getNewBySlug(slug);
 	}
 }

@@ -22,8 +22,13 @@ public class CommentLikeServiceImp extends BaseService implements CommentLikeSer
 	}
 
 	@Override
-	public void updateLikeNew(int idNew, int idUser, boolean like) {
-		commentLikeDAO.updateLikeNew(idNew, idUser, like);
+	public void updateLikeNew(String newSlug, int idUser) {
+		boolean checkLike = checkDataLike(newSlug, idUser).get(0).isLike();
+		if(checkLike == true) {
+			commentLikeDAO.updateLikeNew(newSlug, idUser, false);
+		}else if(checkLike == false) {
+			commentLikeDAO.updateLikeNew(newSlug, idUser, true);
+		}
 	}
 
 	@Override
@@ -32,12 +37,12 @@ public class CommentLikeServiceImp extends BaseService implements CommentLikeSer
 	}
 
 	@Override
-	public List<Like> checkDataLike(int idNew, int idUser) {
+	public List<Like> checkDataLike(String idNew, int idUser) {
 		return commentLikeDAO.checkDataLike(idNew, idUser);
 	}
 
 	@Override
-	public List<Comment> checkDataComment(int idNew, int idUser) {
+	public List<Comment> checkDataComment(String idNew, int idUser) {
 		return commentLikeDAO.checkDataComment(idNew, idUser);
 	}
 }

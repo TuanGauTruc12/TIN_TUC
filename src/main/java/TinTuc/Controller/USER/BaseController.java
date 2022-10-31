@@ -32,15 +32,15 @@ public class BaseController {
 	@Autowired
 	protected CommentLikeServiceImp _commentLikeServiceImp;
 	
-	//@Autowired
-	//protected UserSe
-	
-	
-	@PostConstruct
-	public ModelAndView Init() {		
+	protected void showDataHome() {
 		_mvShare.addObject("categories", _homeServiceImp.getDataCategories());
 		_mvShare.addObject("properties",_homeServiceImp.getDataProperties());
 		_mvShare.addObject("newUpdates", _homeServiceImp.getDataNewUpdate());
+	}
+	
+	@PostConstruct
+	public ModelAndView Init() {		
+		showDataHome();
 		return _mvShare;
 	}
 }

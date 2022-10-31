@@ -11,9 +11,9 @@ import TinTuc.Entity.Like;
 @Service
 public interface CommentLikeService{
 	public void insertCommentNew(int idNew, int idUser, String content, Date commentDate);
-	public void updateCommentNew(int idNew, int idUser, String content, Date commentDate);
-	public void updateLikeNew(int idNew, int idUser, boolean like);
 	public void insertLikeNew(int idNew, int idUser);
-	public List<Like> checkDataLike(int idNew, int idUser);
-	public List<Comment> checkDataComment(int idNew, int idUser);
+	public void updateCommentNew(int idNew, int idUser, String content, Date commentDate);
+	public void updateLikeNew(String slug, int idUser);
+	public List<Like> checkDataLike(String slug, int idUser);
+	public List<Comment> checkDataComment(String slug, int idUser);
 }

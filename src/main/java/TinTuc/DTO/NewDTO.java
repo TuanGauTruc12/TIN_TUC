@@ -2,7 +2,6 @@ package TinTuc.DTO;
 
 public class NewDTO extends BaseDTO{
 	private int idCategory;
-	private String newSlug;
 	private String categoryTitle;
 	private String summary;
 	
@@ -11,12 +10,6 @@ public class NewDTO extends BaseDTO{
 	}
 	public void setIdCategory(int idCategory) {
 		this.idCategory = idCategory;
-	}
-	public String getNewSlug() {
-		return newSlug;
-	}
-	public void setNewSlug(String newSlug) {
-		this.newSlug = newSlug;
 	}
 	public String getCategoryTitle() {
 		return categoryTitle;

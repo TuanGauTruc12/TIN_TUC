@@ -1,36 +1,62 @@
 package TinTuc.Controller.USER;
 
-import javax.servlet.http.HttpSession;
+import java.util.List;
 
+import javax.faces.flow.ReturnNode;
+import javax.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import TinTuc.Entity.User;
+import TinTuc.Services.USER.UserServiceImp;
 
 @Controller
 public class UserController extends BaseController{
-	@RequestMapping(value = "/dangNhap")
+	ModelAndView mv = new ModelAndView();
+	
+	@Autowired
+	UserServiceImp userServiceImp;
+	
+	@RequestMapping("/login-signup/login/")
 	public ModelAndView dangNhap() {
-		_mvShare.setViewName("user/login");
-		return _mvShare;
+		mv.setViewName("/login-signup/login");
+		return mv;
+	}
+	
+	@RequestMapping("/login-signup/login/email={email}&password={pass}")
+	public String dangNhap(HttpSession session, Model model, @PathVariable String email, @PathVariable String pass) {
+		List<User> users = userServiceImp.logIn(email, pass);
+		if(users.size() == 0) {
+			model.addAttribute("login", "Đăng nhập thất bại");
+			return "login-signup/login";
+		}
+		User user = users.get(0);
+		if(user.getId_role()  == 0) {
+			session.setAttribute("user", user);
+			return "redirect:/";
+		}
+		return "redirect:/admin/";
 	}
 
-	@RequestMapping(value = "/dangKi")
+	@RequestMapping("/login-signup/signup/")
 	public ModelAndView dangKi() {
-		_mvShare.setViewName("user/signup");
-		return _mvShare;
+		mv.setViewName("/login-signup/signUp");
+		return mv;
 	}
 
-	@RequestMapping("/signUp/{email}&{pass}&{name}&{mobile}&{age}")
+	@RequestMapping("/login-signup/signUp/{email}&{pass}&{name}&{mobile}&{age}")
 	public String dangKy(@PathVariable String email, @PathVariable String pass, @PathVariable String name,
 			@PathVariable String mobile, @PathVariable int age) {
 		//.dangKy(email, pass, name, mobile, age);
-		return "redirect:" + "/dangNhap";
+		return "redirect:" + "/login-signup/login";
 	}
 
-	@RequestMapping("/signOut")
+	@RequestMapping("/login-signup/signOut/")
 	public String dangXuat(HttpSession session) {
-		session.removeAttribute("khachhang");
+		session.removeAttribute("user");
 		return "redirect:/";
 	}
 

@@ -36,11 +36,8 @@
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ categoryBySlugsLimit.image }"/>'
 											alt="">
-										</a> <a
-											href="<c:url value = "/${categoryBySlugsLimit.categorySlug}/${ categoryBySlugsLimit.propertySlug }"/>"
-											class="cat">${ categoryBySlugsLimit.propertyTitle }</a> <a
-											href="#" class="icon"><i class="fa-regular fa-heart"></i></a>
-
+										</a> 
+										
 										<div class="post--info">
 											<ul class="nav meta">
 												<li><span class="d-inline bg-black">${ categoryBySlugsLimit.author }</span></li>
@@ -100,10 +97,7 @@
 											<img class="img-fluid" height="400" style="width: 100%;"
 											src='<c:url value = "/public/user/uploads/tintuc/${ categoryBySlug.image }"/>'
 											alt="${ categoryBySlug.image }">
-										</a> <a
-											href="<c:url value = "/${categoryBySlug.categorySlug}/${ categoryBySlug.propertySlug }"/>"
-											class="cat">${ categoryBySlug.propertyTitle }</a> <a href="#"
-											class="icon"><i class="fa-regular fa-heart"></i></a>
+										</a>
 
 										<div class="post--info">
 											<ul class="nav meta">

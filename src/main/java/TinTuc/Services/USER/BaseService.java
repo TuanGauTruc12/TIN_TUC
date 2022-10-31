@@ -6,6 +6,7 @@ import TinTuc.DAO.CategoryDAO;
 import TinTuc.DAO.Comment_LikeDAO;
 import TinTuc.DAO.NewDAO;
 import TinTuc.DAO.PropertyDAO;
+import TinTuc.DAO.UserDAO;
 
 @Service
 public abstract class BaseService {
@@ -17,4 +18,6 @@ public abstract class BaseService {
 	protected NewDAO newDAO;
 	@Autowired 
 	protected Comment_LikeDAO commentLikeDAO;
+	@Autowired
+	protected UserDAO userDAO;
 }

@@ -1,0 +1,147 @@
+:root{
+  --widthAndHeightForm: 500px;
+  /*Width Height Form Mobile*/
+  --widthAndHeightFormMobile: 400px;
+
+  --clipAnimotion: calc(var(--widthAndHeightForm) + calc(var(--widthAndHeightForm) * 0.1));
+
+  --clipAnimotion1: calc(var(--clipAnimotion) - calc(var(--clipAnimotion) * 0.01));
+
+  --clipAnimotion2: calc(var(--clipAnimotion) - var(--clipAnimotion1));
+
+  --clipAnimotionMobile: calc(var(--widthAndHeightFormMobile) + calc(var(--widthAndHeightFormMobile) * 0.1));
+
+  --clipAnimotionMobile1: calc(var(--clipAnimotionMobile) - calc(var(--clipAnimotionMobile) * 0.01));
+
+  --clipAnimotionMobile2: calc(var(--clipAnimotionMobile) - var(--clipAnimotionMobile1));
+}
+
+
+.d-inline{
+	display: inline;	
+}
+
+.bg-black{
+	background: black;
+}
+
+.ms-2{
+	margin-left: 2rem !important; 
+}
+
+.mt-2{
+	margin-top: 2rem !important;
+}
+
+.mt-1{
+	margin-top: 1rem !important;
+}
+
+a .thumbnail > img{
+	width: 100%;
+}
+
+a .thumbnail > img:hover{
+	opacity: 0.7;
+}
+
+.main{
+  background: linear-gradient(0deg, rgb(77, 243, 83) 4%, rgba(8,205,236,1) 71%, rgb(25, 192, 225) 100%);
+  height: 100vh;
+}
+
+
+.bb::before, .bb::after, .bb {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.bb {
+  z-index: 100;
+  display: flex;
+  width: var(--widthAndHeightForm);
+  height: var(--widthAndHeightForm);
+  margin: auto;
+}
+
+.bb::before, .bb::after {
+  content: "";
+  z-index: -1;
+  margin: -5%;
+  box-shadow: inset 0 0 4px 2px yellow;
+  animation: clipMe 8s linear infinite;
+}
+
+.field-icon {
+  float: right;
+  margin-top: -25px;
+  margin-right: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.w-40{
+  width: 40% !important;
+}
+
+.header--topbar .nav > li > span >.btn:hover{
+	color: while;
+}
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(0, var(--clipAnimotion), var(--clipAnimotion2), 0px);
+  }
+  25% {
+    clip: rect(0px, var(--clipAnimotion2), var(--clipAnimotion), 0px);
+  }  50% {
+    clip: rect(var(--clipAnimotion1), var(--clipAnimotion), var(--clipAnimotion), 0px);
+  }
+  75% {
+    clip: rect(0px, var(--clipAnimotion), var(--clipAnimotion), var(--clipAnimotion1));
+  }
+}
+
+@keyframes clipMe {
+  0%, 100% {
+    clip: rect(0, var(--clipAnimotion), var(--clipAnimotion2), 0px);
+  }
+  25% {
+    clip: rect(0px, var(--clipAnimotion2), var(--clipAnimotion), 0px);
+  }  50% {
+    clip: rect(var(--clipAnimotion1), var(--clipAnimotion), var(--clipAnimotion), 0px);
+  }
+  75% {
+    clip: rect(0px, var(--clipAnimotion), var(--clipAnimotion), var(--clipAnimotion1));
+  }
+}
+
+@keyframes clipMeMobile {
+  0%, 100% {
+    clip: rect(0, var(--clipAnimotionMobile), var(--clipAnimotionMobile2), 0px);
+  }
+  25% {
+    clip: rect(0px, var(--clipAnimotionMobile2), var(--clipAnimotionMobile), 0px);
+  }  50% {
+    clip: rect(var(--clipAnimotionMobile1), var(--clipAnimotionMobile), var(--clipAnimotionMobile), 0px);
+  }
+  75% {
+    clip: rect(0px, var(--clipAnimotionMobile), var(--clipAnimotionMobile), var(--clipAnimotionMobile1));
+  }
+}
+
+/*Mobile*/
+@media (max-width: 46.1875em){
+  .bb{
+    width: var(--widthAndHeightFormMobile);
+    height: var(--widthAndHeightFormMobile);
+  }
+
+  .bb::before,
+  .bb::after{
+    animation: clipMeMobile 8s linear infinite;
+  }
+}
