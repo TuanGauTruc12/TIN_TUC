@@ -87,6 +87,10 @@ a .thumbnail > img:hover{
   width: 40% !important;
 }
 
+.comment--header .date {
+	border-left: none;
+}
+
 .header--topbar .nav > li > span >.btn:hover{
 	color: while;
 }

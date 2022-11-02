@@ -72,7 +72,7 @@
 
 
 							<div class="post--content w-100">
-								<div>${ newDetail.content }</div>
+								<div style="padding-left: 50px; padding-right: 50px;">${ newDetail.content }</div>
 							</div>
 						</div>
 						<!-- Post Item End -->
@@ -205,27 +205,87 @@
 						<div class="comment--list pd--30-0">
 							<!-- Post Items Title Start -->
 							<div class="post--items-title">
-								<h2 class="h4">${ countComment }bình luận</h2>
+								<h2 class="h4">${ countComment }
+									<span style="margin-left: 1px">bình luận</span>
+								</h2>
 
 								<i class="icon fa fa-comments-o"></i>
 							</div>
 							<!-- Post Items Title End -->
 
-							<ul class="comment--items nav">
-								<li>
-									<!-- Comment Item Start -->
-									<div class="comment--item clearfix">
-										<div class="comment--img float--left">
-											<img src="img/news-single-img/comment-avatar-02.jpg" alt="">
-										</div>
-
-										<div class="comment--info">
-											<div class="comment--content">
-												<p>Chưa có bình luận nào</p>
+							<ul class="comment--items nav"
+								style="border: 2px; solid; background-color: #f2f3f5">
+								<li><c:if test="${ comments.size() == 0 }">
+										<!-- Comment Item Start -->
+										<div class="comment--item clearfix">
+											<div class="comment--info">
+												<div class="comment--content">
+													<p>Chưa có bình luận nào</p>
+												</div>
 											</div>
 										</div>
-									</div> <!-- Comment Item End -->
-								</li>
+
+										<!-- Comment Item End -->
+
+									</c:if> 
+									
+									<c:if test="${ comments.size() != 0 }">
+
+										<c:forEach items="${ comments }" var="comment">
+
+											<c:if test="${ not empty user }">
+
+												<c:if test="${comment.idUser == user.id }">
+													<!-- Comment Item Start -->
+													<div class="comment--item clearfix">
+														<div class="comment--info pull-right">
+															<div class="comment--header clearfix">
+																<p class="name">${ comment.userName }</p>
+																<p class="date">${ comment.commentDate }</p>
+															</div>
+															<div class="comment--content">
+																<p>${comment.contentComment }</p>
+															</div>
+														</div>
+													</div>
+													<!-- Comment Item End -->
+												</c:if>
+												<c:if test="${comment.idUser != user.id }">
+												<!-- Comment Item Start -->
+												<div class="comment--item clearfix">
+													<div class="comment--info pull-left">
+														<div class="comment--header clearfix">
+															<p class="name">${ comment.userName }</p>
+															<p class="date">${ comment.commentDate }</p>
+														</div>
+														<div class="comment--content">
+															<p>${comment.contentComment }</p>
+														</div>
+													</div>
+												</div>
+												<!-- Comment Item End -->
+												
+												</c:if>
+											</c:if>
+											
+											<c:if test="${ empty user }">
+												<!-- Comment Item Start -->
+												<div class="comment--item clearfix">
+													<div class="comment--info">
+														<div class="comment--header clearfix">
+															<p class="name">${ comment.userName }</p>
+															<p class="date">${ comment.commentDate }</p>
+														</div>
+														<div class="comment--content">
+															<p>${comment.contentComment }</p>
+														</div>
+													</div>
+												</div>
+												<!-- Comment Item End -->
+											</c:if>
+										</c:forEach>
+
+									</c:if></li>
 							</ul>
 						</div>
 						<!-- Comment List End -->
@@ -247,13 +307,14 @@
 
 									<div class="row">
 										<div class="col">
-											<label> <span>Comment *</span> <textarea id="comment" class="form-control" required></textarea>
+											<label> <span>Comment *</span> <textarea id="comment"
+													class="form-control" required></textarea>
 											</label>
 										</div>
 										<div class="col-12">
 											<c:if test="${ not empty user }">
-												<button
-													class="btn btn-primary" onclick="comment(`${ newSlug }`, `${ idUser }`)">
+												<button class="btn btn-primary"
+													onclick="comment(`${ newSlug }`, `${ idUser }`)">
 													Đăng</button>
 											</c:if>
 											<c:if test="${ empty user }">

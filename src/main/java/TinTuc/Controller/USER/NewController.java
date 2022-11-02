@@ -15,6 +15,7 @@ public class NewController extends BaseController{
 		_mvShare.addObject("newDetail", newDetailDTO);
 		_mvShare.addObject("newByAuthors", _newServiceImp.getNewByAuthor(newDetailDTO.getAuthorID()));
 		_mvShare.addObject("newByProperties", _newServiceImp.getNewByProperty(newDetailDTO.getIdProperty()));
+		_mvShare.addObject("comments", _commentLikeServiceImp.getDataComments(newSlug));
 		_mvShare.setViewName("user/new-detail");
 		return _mvShare;
 	}

@@ -10,9 +10,11 @@ public class MapperCommentDTO implements RowMapper<CommentDTO>{
 	@Override
 	public CommentDTO mapRow(ResultSet rs, int rowNum) throws SQLException {
 		CommentDTO commentDTO = new CommentDTO();
-		commentDTO.setUserName(rs.getString(1));
-		commentDTO.setCommentDate(rs.getDate(2));
-		commentDTO.setContentComment(rs.getString(3));
+		commentDTO.setIdComment(rs.getInt(1));
+		commentDTO.setIdUser(rs.getInt(2));
+		commentDTO.setUserName(rs.getString(3));
+		commentDTO.setCommentDate(rs.getDate(4));
+		commentDTO.setContentComment(rs.getString(5));
 		return commentDTO;
 	}
 }

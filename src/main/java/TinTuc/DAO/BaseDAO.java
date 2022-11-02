@@ -11,7 +11,7 @@ public abstract class BaseDAO {
 	
 	public abstract void delete(int id);
 	
-	public StringBuffer delete(int id, String tableName) {
+	protected StringBuffer delete(int id, String tableName) {
 		StringBuffer sqlDelete = new StringBuffer();
 		sqlDelete.append("DELETE FROM ");
 		sqlDelete.append(tableName);

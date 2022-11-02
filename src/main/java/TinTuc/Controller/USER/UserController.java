@@ -3,6 +3,7 @@ package TinTuc.Controller.USER;
 import java.util.List;
 
 import javax.faces.flow.ReturnNode;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class UserController extends BaseController{
 			session.setAttribute("user", user);
 			return "redirect:/";
 		}
-		return "redirect:/admin/";
+		return "redirect:/admin/" + user.getId_role() + "/";
 	}
 
 	@RequestMapping("/login-signup/signup/")
@@ -59,19 +60,4 @@ public class UserController extends BaseController{
 		session.removeAttribute("user");
 		return "redirect:/";
 	}
-
-	/*
-	@RequestMapping("/logIn/?email={email}&password={pass}")
-	public ModelAndView dangNhap(HttpSession session, @PathVariable String email, @PathVariable String pass) {
-		//User user = khachHangService.dangNhap(email, pass);
-		if (user == null) {
-			_mvShare.setViewName("user/login");
-			_mvShare.addObject("fail", "Đăng nhập không thành công. Xin vui lòng kiểm tra lại!!!");
-		} else {
-			session.setAttribute("user", user);
-			_mvShare.setViewName("user/index");
-		}
-		return _mvShare;
-	}
-	*/
 }

@@ -50,4 +50,8 @@ public class CategoryDAO extends BaseDAO{
 	public void delete(int id) {
 		jdbcTemplate.execute(delete(id, "category").toString());
 	}
+
+	public void addCategory(String title, String slug, int idUser) {
+		
+	}
 }

@@ -3,10 +3,25 @@ package TinTuc.DTO;
 import java.sql.Date;
 
 public class CommentDTO {
+	private int idComment;
 	private String userName;
 	private Date commentDate;
 	private String contentComment;
+	private int idUser;
 	
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+	public int getIdComment() {
+		return idComment;
+	}
+	public void setIdComment(int idComment) {
+		this.idComment = idComment;
+	}
 	public String getUserName() {
 		return userName;
 	}

@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HomeAdminController{
 	@RequestMapping("/admin/{id_role}")
 	public ModelAndView index(@PathVariable int id_role) {
-		System.out.println(id_role);
+		
 		return new ModelAndView("admin/index");
 	}
 }

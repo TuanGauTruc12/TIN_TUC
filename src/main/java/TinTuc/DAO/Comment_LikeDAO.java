@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import TinTuc.DTO.CommentDTO;
+import TinTuc.DTO.MapperCommentDTO;
 import TinTuc.Entity.Comment;
 import TinTuc.Entity.Like;
 import TinTuc.Entity.MapperComment;
@@ -29,7 +31,7 @@ public class Comment_LikeDAO extends BaseDAO{
 		sb.append(", ");
 		sb.append(idNew);
 		sb.append(", ");
-		sb.append(false);
+		sb.append(true);
 		sb.append(")");
 		jdbcTemplate.execute(sb.toString());
 	}
@@ -83,10 +85,26 @@ public class Comment_LikeDAO extends BaseDAO{
 	}
 	
 	public List<Comment> checkDataComment(String slug, int idUser){
-		StringBuffer sb = getAll("comments").append(", new ").append("WHERE comments.id_user = user.id ");
+		StringBuffer sb = getAll("comments").append(", new, user ").append("WHERE comments.id_user = user.id ");
 		sb.append("AND comments.id_new = new.id");
-		sb.append(" AND new.slug = ");
-		sb.append(slug).append("AND comments.id_user = ").append(idUser);
+		sb.append(" AND new.slug = '");
+		sb.append(slug).append("' AND comments.id_user = ").append(idUser);
 		return jdbcTemplate.query(sb.toString(), new MapperComment());
+	}
+	
+	public List<CommentDTO> getDataComments(String newSlug){
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT comments.id AS idComment, ");
+		sb.append("user.id AS idUser, ");
+		sb.append("user.name AS userName, ");
+		sb.append("comments.comment_date AS commentDate, ");
+		sb.append("comments.content AS contentComment ");
+		sb.append("FROM comments, new, user ");
+		sb.append("WHERE new.id = comments.id_new AND user.id = comments.id_user ");
+		sb.append("AND comments.status = 1 ");
+		sb.append("AND new.slug = '");
+		sb.append(newSlug);
+		sb.append("' ORDER BY comments.id DESC");
+		return jdbcTemplate.query(sb.toString(), new MapperCommentDTO());
 	}
 }

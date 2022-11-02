@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import TinTuc.DTO.CommentDTO;
 import TinTuc.Entity.Comment;
 import TinTuc.Entity.Like;
 
@@ -16,4 +17,5 @@ public interface CommentLikeService{
 	public void updateLikeNew(String slug, int idUser);
 	public List<Like> checkDataLike(String slug, int idUser);
 	public List<Comment> checkDataComment(String slug, int idUser);
+	public List<CommentDTO> getDataComments(String newSlug);
 }

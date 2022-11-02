@@ -59,9 +59,9 @@
 		<%@include file="/WEB-INF/views/layouts/user/footer.jsp"%>
 
 	</div>
-    <!-- Back To Top Button Start -->
+        <!-- Back To Top Button Start -->
     <div id="backToTop">
-        <a href="#"><i class="fa fa-angle-double-up"></i></a>
+        <a><i class="fa fa-angle-double-up"></i></a>
     </div>
     <!-- Back To Top Button End -->
 

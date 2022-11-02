@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import TinTuc.DTO.CommentDTO;
 import TinTuc.Entity.Comment;
 import TinTuc.Entity.Like;
 
@@ -44,5 +45,10 @@ public class CommentLikeServiceImp extends BaseService implements CommentLikeSer
 	@Override
 	public List<Comment> checkDataComment(String idNew, int idUser) {
 		return commentLikeDAO.checkDataComment(idNew, idUser);
+	}
+
+	@Override
+	public List<CommentDTO> getDataComments(String newSlug) {
+		return commentLikeDAO.getDataComments(newSlug);
 	}
 }
