@@ -35,41 +35,17 @@
 
 					<ul class="header--menu-links nav navbar-nav"
 						data-trigger="hoverIntent">
-						<li class="dropdown">
-							<span class="btn">${ user.name }</span>
+						<li class="dropdown"><span class="btn">${ user.name }</span>
 							<ul class="dropdown-menu">
 								<c:if test="${ user.id_role == 0 }">
 									<li><a href="<c:url value = "/login-signup/signOut/"/>">
 											Đăng xuất </a></li>
 								</c:if>
-
-								<c:if test="${ user.id_role != 0 }">
-									<li><a href="<c:url value = "/admin/${ user.id_role }"/>">
-											Trang quản trị </a></li>
-
-									<li><a href="<c:url value = "/login-signup/signOut/"/>">
-											Đăng xuất </a></li>
-								</c:if>
-							</ul>
-						</li>
+							</ul></li>
 					</ul>
-
 				</c:if>
 				<!-- Header Topbar Action End -->
 
-
-				<!-- Header Topbar Social Start -->
-				<ul class="header--topbar-social nav hidden-sm hidden-xxs">
-					<li><a href="https://www.facebook.com/ngoccam651"><i
-							class="fa fa-facebook"></i></a></li>
-					<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-					<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-					<li><a href="#"><i class="fa fa-rss"></i></a></li>
-					<li><a
-						href="https://www.youtube.com/channel/UCk8UM8PAAV6PTn3eNuMthRQ"><i
-							class="fa fa-youtube-play"></i></a></li>
-				</ul>
-				<!-- Header Topbar Social End -->
 			</div>
 		</div>
 	</div>
@@ -79,16 +55,11 @@
 	<div class="header--mainbar">
 		<div class="container">
 			<!-- Header Logo Start -->
-			<div class="header--logo float--left float--sm-none text-sm-center">
-				<h1 class="h1">
-					<a href="http://localhost/KCNEW" class="btn-link"> <video
-							autoplay loop muted width="50%">
-							<source
-								src="<c:url value = "/public/user/frontend/img/KCN (online-video-cutter.com).mp4"/>"
-								style="" />
-						</video> <span class="hidden">Kcnew - logo</span>
-					</a>
-				</h1>
+			<div class="header--logo float--left float--sm-none">
+				<a href='<c:url value = "/"/>' class="btn-link"> <img
+					style="height: 100px;"
+					src="<c:url value = "/public/user/uploads/tintuc/LoGo_HTNews.jpg"/>" />
+				</a> <span class="hidden">Kcnew - logo</span>
 			</div>
 			<!-- Header Logo End -->
 		</div>

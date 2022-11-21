@@ -149,3 +149,9 @@ a .thumbnail > img:hover{
     animation: clipMeMobile 8s linear infinite;
   }
 }
+
+footer.sticky-footer {
+  overflow: hidden;
+  bottom: 0;
+  width: 100%;
+}

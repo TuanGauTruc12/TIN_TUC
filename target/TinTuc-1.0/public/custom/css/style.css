@@ -87,6 +87,10 @@ a .thumbnail > img:hover{
   width: 40% !important;
 }
 
+.comment--header .date {
+	border-left: none;
+}
+
 .header--topbar .nav > li > span >.btn:hover{
 	color: while;
 }
@@ -144,4 +148,10 @@ a .thumbnail > img:hover{
   .bb::after{
     animation: clipMeMobile 8s linear infinite;
   }
+}
+
+footer.sticky-footer {
+  overflow: hidden;
+  bottom: 0;
+  width: 100%;
 }

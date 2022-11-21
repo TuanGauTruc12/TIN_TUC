@@ -1,6 +1,7 @@
 package TinTuc.DAO;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -10,6 +11,8 @@ import TinTuc.DTO.MapperNewDTO;
 import TinTuc.DTO.MapperNewDetailDTO;
 import TinTuc.DTO.NewDTO;
 import TinTuc.DTO.NewDetailDTO;
+import TinTuc.DTO.Admin.MapperNewDTOAdmin;
+import TinTuc.DTO.Admin.NewDTOAdmin;
 import TinTuc.Entity.MapperNew;
 import TinTuc.Entity.New;
 
@@ -51,6 +54,11 @@ public class NewDAO extends BaseDAO{
 		return jdbcTemplate.query(sql, new MapperNewDetailDTO()).get(0);
 	}
 	
+	public List<Map<Integer, Integer>> getCommentByIdNew(){
+		//String sql = "SELECT A"
+		return null; 
+	}
+	
 	public List<NewDTO> getNewByAuthor(int author){
 		String sql = sqlDataNewDTO().append(" AND new.author = " + author + "  LIMIT 3;").toString();
 		return jdbcTemplate.query(sql, new MapperNewDTO());
@@ -59,5 +67,66 @@ public class NewDAO extends BaseDAO{
 	public List<NewDTO> getNewByProperty(int propertyID){
 		String sql = sqlDataNewDTO().append(" AND new.id_property = ").append(propertyID).append(" LIMIT 3;").toString();
 		return jdbcTemplate.query(sql, new MapperNewDTO());
+	}
+	
+	public List<NewDTOAdmin> getDataNewAdminByIDAuthor(int idAuthor){
+		String sql = "SELECT new.id AS idNew, new.title AS newTitle, "
+				+ "property.title AS property, category.title AS category, user.name "
+				+ "AS author, new.status, new.approval_Date AS approvalDate, user.id AS idUser "
+				+ "FROM category, property, user, role, new WHERE category.id = new.id_category AND new.id_property = property.id AND new.author = user.id AND user.id_role = role.id AND new.author = " + idAuthor;
+		return jdbcTemplate.query(sql, new MapperNewDTOAdmin());
+ 	}
+	
+	public void insertNew(String title, String slug, String summary, String content, int author, String posting_date, String approval_date, String image, String video, int id_property, int id_category) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("INSERT INTO new(");
+		sb.append("title, slug, summary, content, author, posting_date, approval_date, image, video, id_property, id_category)");
+		sb.append(" VALUES (");
+		sb.append("'").append(title).append("',");
+		sb.append("'").append(slug).append("',");
+		sb.append("'").append(summary).append("',");
+		sb.append("'").append(content).append("',");
+		sb.append(author).append(",");
+		sb.append("'").append(posting_date).append("', ");
+		sb.append("'").append(approval_date).append("', ");
+		sb.append("'").append(image).append("', ");
+		sb.append("'").append(video).append("', ");
+		sb.append(id_property).append(", ");
+		sb.append(id_category).append(");");
+		System.out.println(sb.toString());
+		//jdbcTemplate.execute(sb.toString());
+	}
+	
+	public void updateNew(int id, String title, String slug, String summary, String content,
+			String posting_date, String approval_date, String image, String video, int id_property,
+			int id_category) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE new SET ");
+		sb.append("title = ").append("'").append(title).append("', ");
+		sb.append("slug = ").append("'").append(slug).append("', ");
+		sb.append("summary = ").append("'").append(summary).append("', ");
+		sb.append("content = ").append("'").append(content).append("', ");
+		sb.append("posting_date = ").append("'").append(posting_date).append("', ");
+		sb.append("approval_date = ").append("'").append(approval_date).append("', ");
+		sb.append("image = ").append("'").append(image).append("', ");
+		sb.append("video = ").append("'").append(video).append("', ");
+		sb.append("id_property = ").append(id_property).append(", ");
+		sb.append("id_category = ").append(id_category).append(" ");
+		sb.append("WHERE new.id = ").append(id);
+		System.out.println(sb.toString());
+		//jdbcTemplate.execute(sb.toString());
+	}
+	
+	public void updateNew(int id, boolean status) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE new SET ");
+		sb.append("status = ").append(status);
+		sb.append("WHERE new.id = ").append(id);
+		System.out.println(sb.toString());
+		//jdbcTemplate.execute(sb.toString());
+	}
+	
+	public void deleteNew(int id) {
+		delete(id);
 	}
 }

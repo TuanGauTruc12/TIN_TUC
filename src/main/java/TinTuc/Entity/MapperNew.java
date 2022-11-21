@@ -19,12 +19,11 @@ public class MapperNew implements RowMapper<New>{
 		n.setPosting_date(rs.getDate(7));
 		n.setApproval_date(rs.getDate(8));
 		n.setView(rs.getInt(9));
-		n.setVote(rs.getInt(10));
-		n.setImage(rs.getString(11));
-		n.setVideo(rs.getString(12));
-		n.setStatus(rs.getBoolean(13));
-		n.setId_category(rs.getInt(14));
-		n.setId_property(rs.getInt(15));
+		n.setImage(rs.getString(10));
+		n.setVideo(rs.getString(11));
+		n.setStatus(rs.getBoolean(12));
+		n.setId_category(rs.getInt(13));
+		n.setId_property(rs.getInt(14));
 		return n;
 	}
 

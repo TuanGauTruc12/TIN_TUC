@@ -15,7 +15,7 @@ import TinTuc.Services.USER.PropertyServiceImp;
 @Controller
 public class BaseController {
 	
-	public ModelAndView _mvShare = new ModelAndView();
+	protected ModelAndView _mvShare = new ModelAndView();
 	
 	@Autowired
 	protected PropertyServiceImp _propertyServiceImp;
@@ -32,7 +32,7 @@ public class BaseController {
 	@Autowired
 	protected CommentLikeServiceImp _commentLikeServiceImp;
 	
-	protected void showDataHome() {
+	private void showDataHome() {
 		_mvShare.addObject("categories", _homeServiceImp.getDataCategories());
 		_mvShare.addObject("properties",_homeServiceImp.getDataProperties());
 		_mvShare.addObject("newUpdates", _homeServiceImp.getDataNewUpdate());

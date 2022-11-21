@@ -11,7 +11,6 @@ public class New extends BaseEntity{
 	private Date posting_date;
 	private Date approval_date;
 	private int view;
-	private int vote;
 	private String image;
 	private String video;
 	private boolean status;
@@ -81,15 +80,7 @@ public class New extends BaseEntity{
 	public void setView(int view) {
 		this.view = view;
 	}
-
-	public int getVote() {
-		return vote;
-	}
-
-	public void setVote(int vote) {
-		this.vote = vote;
-	}
-
+	
 	public String getImage() {
 		return image;
 	}

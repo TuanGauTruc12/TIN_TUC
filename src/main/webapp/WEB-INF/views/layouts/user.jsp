@@ -57,7 +57,6 @@
 		<decorator:body/>
 
 		<%@include file="/WEB-INF/views/layouts/user/footer.jsp"%>
-
 	</div>
         <!-- Back To Top Button Start -->
     <div id="backToTop">
