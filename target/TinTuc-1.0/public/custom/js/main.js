@@ -33,14 +33,21 @@ $(document).ready(function() {
 	});
 });
 
-function ChangeToSlug() {
+  $("#title").on('keyup', function () {
 
 	//Lấy text từ thẻ input title 
-	let title = document.getElementById("title").value;
-
+    let title = $(this).val();
+    	
+	
 	//Đổi chữ hoa thành chữ thường
 	let slug = title.toLowerCase();
-
+	
+    if(!title.trim().length){
+      $("#slug").val("");
+    }
+	 
+	slug = slug + ' ' + Math.random() * 100;
+	
 	//Đổi ký tự có dấu thành không dấu
 	slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
 	slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -63,8 +70,8 @@ function ChangeToSlug() {
 	slug = '@' + slug + '@';
 	slug = slug.replace(/\@\-|\-\@|\@/gi, '');
 	//In slug ra textbox có id “slug”
-	document.getElementById('slug').value = slug;
-}
+	$("#slug").val(`${slug}`);
+});
 
 $(document).ready(function() {
 	$('#content').summernote();
@@ -81,7 +88,9 @@ $("#danhmuc").change(function(e) {
 		$.ajax({
 			type: "POST",
 			url: "http://localhost:8080/TinTuc/admin/new-admin/write-new/selectproperty/",
-			data: { category: idDanhMuc ,},
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			data: { category: idDanhMuc },
+			dataType:"text",
 			success: function(data) {
 				console.log(data);
 				$('#' + result).html(data);

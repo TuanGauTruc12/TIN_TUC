@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import TinTuc.DTO.CommentDTO;
+import TinTuc.DTO.User.CommentDTO;
 import TinTuc.Entity.Comment;
 import TinTuc.Entity.Like;
 

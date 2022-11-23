@@ -13,4 +13,9 @@ public class UserServiceImp extends BaseService implements UserService{
 	public List<User> logIn(String email, String password) {
 		return userDAO.logIn(email, password);
 	}
+
+	@Override
+	public void signUp(String name, String email, String password, String email_accuracy) {
+		userDAO.signUp(name, email, password, email_accuracy);
+	}
 }

@@ -1,5 +1,7 @@
 package TinTuc.Controller.ADMIN;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +15,26 @@ import TinTuc.Entity.User;
 @Controller
 @RequestMapping(value = "/admin/account")
 public class AccountAdminController extends BaseAdminController{
+	//Show danh sách tài khoản
+	@RequestMapping("/showALL/{id_role}")
+	public ModelAndView showAll(@PathVariable int id_role) {
+		_mvShare.setViewName("admin/account/account");
+		List<User> users = userAdminServiceImp.getAllUser();
+		List<Role> roles = roleAdminServiceImp.getAllRole();
+		_mvShare.addObject("roles", roles);
+		_mvShare.addObject("users", users);
+		return _mvShare;
+	}
+	
+	//thêm account
 	@RequestMapping(value = {"/insertAccount/"}, method = RequestMethod.GET)
-	public ModelAndView showAllAccount() {
+	public ModelAndView insert() {
 		_mvShare.setViewName("/admin/account/insertaccount");
 		_mvShare.addObject("roles", roleAdminServiceImp.getAllRole());
 		return _mvShare;
 	}
 	
+	//Xem thông tin 1 tài khoản
 	@RequestMapping(value = {"/showAccount/{id}"}, method = RequestMethod.GET)
 	public ModelAndView showAccount(@PathVariable int id) {
 		_mvShare.setViewName("admin/account/showaccount");
@@ -29,6 +44,7 @@ public class AccountAdminController extends BaseAdminController{
 		return _mvShare;
 	}
 	
+	//Sửa tài khoản
 	@RequestMapping(value = {"/updateAccount/{id}"}, method = RequestMethod.GET)
 	public ModelAndView updateAccount(@PathVariable int id) {
 		_mvShare.setViewName("admin/account/updateAccount");

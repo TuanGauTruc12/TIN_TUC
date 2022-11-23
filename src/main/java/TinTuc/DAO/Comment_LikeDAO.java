@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import TinTuc.DTO.CommentDTO;
-import TinTuc.DTO.MapperCommentDTO;
+import TinTuc.DTO.User.CommentDTO;
+import TinTuc.DTO.User.MapperCommentDTO;
 import TinTuc.Entity.Comment;
 import TinTuc.Entity.Like;
 import TinTuc.Entity.MapperComment;

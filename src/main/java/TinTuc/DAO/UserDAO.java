@@ -15,8 +15,12 @@ public class UserDAO extends BaseDAO{
 	}
 	
 	public List<User> logIn(String email, String password) {
-		String sql = "SELECT user.id, user.name, user.email, user.password, user.id_role, user.mobile, user.email_accuracy FROM user, role WHERE email = '" + email + "' AND password = '" + password + "' LIMIT 1";
-		return jdbcTemplate.query(sql, new MapperUser());
+		StringBuffer sb = new StringBuffer();
+		sb.append(
+		"SELECT user.id, user.name, user.email, user.password, user.id_role, user.mobile, user.email_accuracy FROM user, role WHERE email = '")
+		.append(email).append("' AND password = '")
+		.append(password).append("' LIMIT 1");
+		return jdbcTemplate.query(sb.toString(), new MapperUser());
 	}
 	
 	public User getUserByID(int id) {

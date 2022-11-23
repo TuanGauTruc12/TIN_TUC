@@ -30,7 +30,7 @@
 	<!-- Main Content Section Start -->
 	<div class="main-content--section pbottom--30">
 		<div class="container">
-			<div class="row">
+			<div class="row justify-content-center text-center">
 				<!-- Main Content Start -->
 				<div class="main--content col-12" data-sticky-content="true">
 					<div class="sticky-content-inner">

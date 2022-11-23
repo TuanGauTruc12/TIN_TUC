@@ -9,4 +9,5 @@ import TinTuc.Entity.User;
 @Service
 public interface UserService{
 	public List<User> logIn(String email, String password);
+	public void signUp(String name, String email, String password, String email_accuracy);
 }

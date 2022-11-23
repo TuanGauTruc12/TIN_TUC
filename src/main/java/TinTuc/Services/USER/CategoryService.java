@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import TinTuc.DTO.NewDTO;
+import TinTuc.DTO.User.NewDTO;
 import TinTuc.Entity.Category;
 
 @Service

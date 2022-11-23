@@ -9,7 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.protobuf.Internal.ProtobufList;
 
 import TinTuc.Entity.User;
 import TinTuc.Services.USER.UserServiceImp;
@@ -28,20 +32,37 @@ public class UserController extends BaseController {
 		return mv;
 	}
 
-	@RequestMapping("/login/email={email}&password={pass}")
-	public String dangNhap(HttpSession session, Model model, @PathVariable String email, @PathVariable String pass) {
+	@RequestMapping(value = "/login/", method = RequestMethod.POST)
+	public String dangNhap(HttpSession session, Model model, @RequestParam(name = "email", required = true) String email, @RequestParam(name = "password", required = true) String pass) {
 		List<User> users = userServiceImp.logIn(email, pass);
 		if (users.size() == 0) {
 			model.addAttribute("login", "Đăng nhập thất bại");
 			return "login-signup/login";
 		}
+		String url = "";
 		User user = users.get(0);
-		if (user.getId_role() == 0) {
+		switch(user.getId_role()) {
+		case 0:
 			session.setAttribute("user", user);
-			return "redirect:/";
+			url = "redirect:/";
+			break;
+		case 1:
+			//admin account
+			session.setAttribute("admin", user);
+			url = "redirect://admin/account/showALL/" + user.getId_role();
+			break;
+		case 2:
+			//admin kiem duyet
+			session.setAttribute("admin", user);
+			url = "redirect:/";
+			break;
+		case 3:
+			//admin new
+			session.setAttribute("admin", user);
+			url = "redirect:/admin/new-admin/write-new/" + user.getId_role() + "/";
+			break;
 		}
-		session.setAttribute("admin", user);
-		return "redirect:/admin/" + user.getId_role() + "/";
+		return url;
 	}
 
 	@RequestMapping("/signup/")
@@ -50,11 +71,10 @@ public class UserController extends BaseController {
 		return mv;
 	}
 
-	@RequestMapping("/login-signup/signUp/{email}&{pass}&{name}&{mobile}&{age}")
-	public String dangKy(@PathVariable String email, @PathVariable String pass, @PathVariable String name,
-			@PathVariable String mobile, @PathVariable int age) {
-		// .dangKy(email, pass, name, mobile, age);
-		return "redirect:" + "/login-signup/login";
+	@RequestMapping(value = "/login-signup/signUp/", method = RequestMethod.POST)
+	public String dangKy(@RequestParam(name = "name", required = true) String name, @RequestParam(name = "email", required = true) String email, @RequestParam(name = "password", required = true) String password) {
+		 userServiceImp.signUp(name, email, password, email);
+		return "redirect:" + "/login-signup/login/";
 	}
 
 	@RequestMapping("/signOut/")

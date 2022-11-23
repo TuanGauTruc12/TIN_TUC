@@ -8,8 +8,8 @@ import java.util.List;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import TinTuc.DTO.MapperNewDTO;
-import TinTuc.DTO.NewDTO;
+import TinTuc.DTO.User.MapperNewDTO;
+import TinTuc.DTO.User.NewDTO;
 import TinTuc.Entity.Category;
 import TinTuc.Entity.MapperCategory;
 

@@ -2,7 +2,7 @@ package TinTuc.DTO.User;
 
 import java.sql.Date;
 
-public class BaseDTO {
+public abstract class BaseDTO {
 	private String image;
 	private String author;
 	private String newTitle;
@@ -14,7 +14,14 @@ public class BaseDTO {
 	private int view;
 	private String newSlug;
 	private int idProperty;
+	private Date postingDate;
 	
+	public Date getPostingDate() {
+		return postingDate;
+	}
+	public void setPostingDate(Date postingDate) {
+		this.postingDate = postingDate;
+	}
 	public String getNewSlug() {
 		return newSlug;
 	}

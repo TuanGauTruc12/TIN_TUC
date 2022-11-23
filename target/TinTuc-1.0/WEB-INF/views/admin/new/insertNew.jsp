@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+ <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
+ 
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 <title>Thêm tin tức</title>
 <body>
@@ -12,7 +12,7 @@
 					<div class="col">
 						<label>Tên bài viết <span style="color: red"> *</span></label> <input
 							type="text" class="form-control" id="title" name="title"
-							placeholder="Nhập tên bài viết" onkeyup="ChangeToSlug();">
+							placeholder="Nhập tên bài viết">
 					</div>
 					<div class="col">
 						<label for="slug">Đường dẫn <span style="color: red">

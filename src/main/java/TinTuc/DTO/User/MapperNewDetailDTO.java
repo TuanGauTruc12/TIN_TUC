@@ -5,8 +5,6 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
-import TinTuc.DTO.NewDetailDTO;
-
 public class MapperNewDetailDTO implements RowMapper<NewDetailDTO>{
 
 	@Override

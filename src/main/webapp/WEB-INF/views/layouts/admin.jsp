@@ -80,7 +80,7 @@
 						<div
 							class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
 							aria-labelledby="userDropdown">
-							<a class="dropdown-item" data-toggle="modal"
+							<a class="dropdown-item" data-toggle="modal" type = "button"
 								data-target="#logoutModal"> <i
 								class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
 								Đăng xuất
@@ -110,9 +110,9 @@
 	</a>
 
 	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
+	<div class="modal justify-content-center fade" id="logoutModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
+		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
 					<h5 class="modal-title" id="exampleModalLabel">Bạn có muốn

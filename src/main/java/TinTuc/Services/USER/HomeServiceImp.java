@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import TinTuc.DAO.CategoryDAO;
 import TinTuc.DAO.NewDAO;
 import TinTuc.DAO.PropertyDAO;
-import TinTuc.DTO.NewDTO;
+import TinTuc.DTO.User.NewDTO;
 import TinTuc.Entity.Category;
 import TinTuc.Entity.New;
 import TinTuc.Entity.Property;

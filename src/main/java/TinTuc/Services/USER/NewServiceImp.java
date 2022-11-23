@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import TinTuc.DTO.NewDTO;
-import TinTuc.DTO.NewDetailDTO;
+import TinTuc.DTO.User.NewDTO;
+import TinTuc.DTO.User.NewDetailDTO;
 import TinTuc.Entity.New;
 
 @Service

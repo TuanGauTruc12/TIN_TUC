@@ -9,8 +9,8 @@ import org.springframework.instrument.classloading.jboss.JBossLoadTimeWeaver;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import TinTuc.DTO.MapperNewDTO;
-import TinTuc.DTO.NewDTO;
+import TinTuc.DTO.User.MapperNewDTO;
+import TinTuc.DTO.User.NewDTO;
 import TinTuc.Entity.MapperProperty;
 import TinTuc.Entity.Property;
 

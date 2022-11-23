@@ -33,13 +33,20 @@ $(document).ready(function() {
 	});
 });
 
-function ChangeToSlug() {
+$("#title").on('keyup', function() {
 
 	//Lấy text từ thẻ input title 
-	let title = document.getElementById("title").value;
+	let title = $(this).val();
 
 	//Đổi chữ hoa thành chữ thường
 	let slug = title.toLowerCase();
+
+	let randomLink = Math.random() * 100;
+
+	slug += " " + randomLink;
+	if (!title.trim().length) {
+		slug = "";
+	}
 
 	//Đổi ký tự có dấu thành không dấu
 	slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
@@ -63,8 +70,8 @@ function ChangeToSlug() {
 	slug = '@' + slug + '@';
 	slug = slug.replace(/\@\-|\-\@|\@/gi, '');
 	//In slug ra textbox có id “slug”
-	document.getElementById('slug').value = slug;
-}
+	$("#slug").val(`${slug}`);
+});
 
 $(document).ready(function() {
 	$('#content').summernote();
@@ -81,12 +88,27 @@ $("#danhmuc").change(function(e) {
 		$.ajax({
 			type: "POST",
 			url: "http://localhost:8080/TinTuc/admin/new-admin/write-new/selectproperty/",
-			data: { category: idDanhMuc},
-			contentType: 'application/x-www-form-urlencoded',
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+			data: { category: idDanhMuc },
+			dataType: "text",
 			success: function(data) {
-				console.log(data);
 				$('#' + result).html(data);
 			}
 		});
 	}
+});
+
+//check pass
+$(document).on('submit', '#frmSignUp', function() {
+	let select = true;
+	let password = $('#password').val();
+	let repassword = $('#repassword').val();
+	if (password.length < 8) {
+		$('#error').text("Mật khẩu phải từ 8 ký tự trở lên");
+		select = false;
+	} else if (password != repassword) {
+		$('#error').text("Mật khẩu không trùng khớp");
+		select = false;
+	}
+	return select;
 });

@@ -5,14 +5,15 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import TinTuc.DTO.CommentDTO;
-import TinTuc.DTO.MapperCommentDTO;
-import TinTuc.DTO.MapperNewDTO;
-import TinTuc.DTO.MapperNewDetailDTO;
-import TinTuc.DTO.NewDTO;
-import TinTuc.DTO.NewDetailDTO;
+import TinTuc.DTO.Admin.MapperDetailAdmin;
 import TinTuc.DTO.Admin.MapperNewDTOAdmin;
 import TinTuc.DTO.Admin.NewDTOAdmin;
+import TinTuc.DTO.User.CommentDTO;
+import TinTuc.DTO.User.MapperCommentDTO;
+import TinTuc.DTO.User.MapperNewDTO;
+import TinTuc.DTO.User.MapperNewDetailDTO;
+import TinTuc.DTO.User.NewDTO;
+import TinTuc.DTO.User.NewDetailDTO;
 import TinTuc.Entity.MapperNew;
 import TinTuc.Entity.New;
 
@@ -21,11 +22,17 @@ public class NewDAO extends BaseDAO{
 	
 	@Override
 	public void delete(int id) {
-		jdbcTemplate.execute(delete(id, "new").toString());
+		String sql = delete(id, "new").toString();
+		System.out.println(sql);
+		//jdbcTemplate.execute(delete(id, "new").toString());
 	}
 	
 	public List<New> getAllNew(){
 		return jdbcTemplate.query(getAll("new").toString(), new MapperNew());
+	}
+	
+	public New getNewByID(int id) {
+		return jdbcTemplate.query(getAll("new").append(" WHERE new.id = '").append(id).append("' LIMIT 1;").toString(), new MapperNew()).get(0);
 	}
 	
 	public New getNewBySlug(String slug) {
@@ -77,10 +84,10 @@ public class NewDAO extends BaseDAO{
 		return jdbcTemplate.query(sql, new MapperNewDTOAdmin());
  	}
 	
-	public void insertNew(String title, String slug, String summary, String content, int author, String posting_date, String approval_date, String image, String video, int id_property, int id_category) {
+	public void insertNew(String title, String slug, String summary, String content, int author, String posting_date, String image, String video, int id_property, int id_category) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("INSERT INTO new(");
-		sb.append("title, slug, summary, content, author, posting_date, approval_date, image, video, id_property, id_category)");
+		sb.append("title, slug, summary, content, author, posting_date, image, video, id_property, id_category)");
 		sb.append(" VALUES (");
 		sb.append("'").append(title).append("',");
 		sb.append("'").append(slug).append("',");
@@ -88,7 +95,6 @@ public class NewDAO extends BaseDAO{
 		sb.append("'").append(content).append("',");
 		sb.append(author).append(",");
 		sb.append("'").append(posting_date).append("', ");
-		sb.append("'").append(approval_date).append("', ");
 		sb.append("'").append(image).append("', ");
 		sb.append("'").append(video).append("', ");
 		sb.append(id_property).append(", ");
@@ -113,20 +119,24 @@ public class NewDAO extends BaseDAO{
 		sb.append("id_property = ").append(id_property).append(", ");
 		sb.append("id_category = ").append(id_category).append(" ");
 		sb.append("WHERE new.id = ").append(id);
-		System.out.println(sb.toString());
-		//jdbcTemplate.execute(sb.toString());
+		jdbcTemplate.execute(sb.toString());
 	}
 	
-	public void updateNew(int id, boolean status) {
+	public void updateNew(int id, boolean status, String approval_date) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("UPDATE new SET ");
 		sb.append("status = ").append(status);
-		sb.append("WHERE new.id = ").append(id);
-		System.out.println(sb.toString());
-		//jdbcTemplate.execute(sb.toString());
+		sb.append(", approval_date = ").append(approval_date);
+		sb.append(" WHERE new.id = ").append(id);
+		jdbcTemplate.execute(sb.toString());
 	}
 	
 	public void deleteNew(int id) {
 		delete(id);
+	}
+	
+	public NewDetailDTO getNewDetailAdmin(int id) {
+		String sql = "SELECT new.image, new.title, user.name, new.posting_date, new.content FROM new, user WHERE new.author = user.id AND status = 1 AND new.id = " + id;
+		return jdbcTemplate.query(sql, new MapperDetailAdmin()).get(0);
 	}
 }
