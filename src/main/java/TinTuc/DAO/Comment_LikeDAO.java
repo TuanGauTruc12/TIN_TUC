@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import TinTuc.DTO.Admin.CommentDTOAdmin;
+import TinTuc.DTO.Admin.MapperCommentDTOAdmin;
 import TinTuc.DTO.User.CommentDTO;
 import TinTuc.DTO.User.MapperCommentDTO;
 import TinTuc.Entity.Comment;
@@ -106,5 +108,13 @@ public class Comment_LikeDAO extends BaseDAO{
 		sb.append(newSlug);
 		sb.append("' ORDER BY comments.id DESC");
 		return jdbcTemplate.query(sb.toString(), new MapperCommentDTO());
+	}
+	
+	public List<CommentDTOAdmin> getCommentToCensorship(){
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT comments.id, new.title AS newTitle, user.name AS userComment, comments.content AS contentComment, comments.comment_date AS commentDate ");
+		sb.append("FROM comments, new, user ");
+		sb.append("WHERE comments.id_user = user.id AND comments.id_new = new.id");
+		return jdbcTemplate.query(sb.toString(), new MapperCommentDTOAdmin());
 	}
 }

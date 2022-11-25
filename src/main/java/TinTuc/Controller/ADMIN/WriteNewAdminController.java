@@ -84,8 +84,9 @@ public class WriteNewAdminController extends BaseAdminController {
 			@RequestParam(name = "thuoctinh", required = true) int id_property,
 			@RequestParam(name = "danhmuc", required = true) int id_category) {
 		 Date date = Calendar.getInstance().getTime();  
-         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");  
-         newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video, id_property, id_category);
+         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+         System.out.println(image);
+         //newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video, id_property, id_category);
 		return "redirect://admin/new-admin/write-new/" + id_role + "/";
 	}
 

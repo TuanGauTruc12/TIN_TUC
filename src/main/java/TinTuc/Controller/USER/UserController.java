@@ -54,7 +54,7 @@ public class UserController extends BaseController {
 		case 2:
 			//admin kiem duyet
 			session.setAttribute("admin", user);
-			url = "redirect:/";
+			url = "redirect:/admin/new-admin/censorship-new/";
 			break;
 		case 3:
 			//admin new

@@ -155,3 +155,15 @@ footer.sticky-footer {
   bottom: 0;
   width: 100%;
 }
+
+.fa-duotone, .fa-asterisk{
+	color: red;
+}
+
+#frmSignUp > #error{
+	margin-bottom: 0!important;
+}
+
+.card-body > detail__content{
+	max-width: none!important; 
+}

@@ -33,21 +33,21 @@ $(document).ready(function() {
 	});
 });
 
-  $("#title").on('keyup', function () {
+$("#title").on('keyup', function() {
 
 	//Lấy text từ thẻ input title 
-    let title = $(this).val();
-    	
-	
+	let title = $(this).val();
+
 	//Đổi chữ hoa thành chữ thường
 	let slug = title.toLowerCase();
-	
-    if(!title.trim().length){
-      $("#slug").val("");
-    }
-	 
-	slug = slug + ' ' + Math.random() * 100;
-	
+
+	let randomLink = Math.random() * 100;
+
+	slug += " " + randomLink;
+	if (!title.trim().length) {
+		slug = "";
+	}
+
 	//Đổi ký tự có dấu thành không dấu
 	slug = slug.replace(/á|à|ả|ạ|ã|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ/gi, 'a');
 	slug = slug.replace(/é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ/gi, 'e');
@@ -90,11 +90,50 @@ $("#danhmuc").change(function(e) {
 			url: "http://localhost:8080/TinTuc/admin/new-admin/write-new/selectproperty/",
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			data: { category: idDanhMuc },
-			dataType:"text",
+			dataType: "text",
 			success: function(data) {
-				console.log(data);
 				$('#' + result).html(data);
 			}
 		});
 	}
+});
+
+//check pass
+$(document).on('submit', '#frmSignUp', function() {
+	let select = true;
+	let password = $('#password').val();
+	let repassword = $('#repassword').val();
+	if (password.length < 8) {
+		$('#error').text("Mật khẩu phải từ 8 ký tự trở lên");
+		select = false;
+	} else if (password != repassword) {
+		$('#error').text("Mật khẩu không trùng khớp");
+		select = false;
+	}
+	return select;
+});
+
+$("#tao").click(function(e) {
+
+	var title = $("#title").val();
+	var slug = $("#slug").val();
+	var tomtat = $("#tomtat").val();
+	var danhmuc = $("#danhmuc").val();
+	var thuoctinh = $("#thuoctinh").val();
+	var tag = $("#tag").val();
+	var hinhanh = $("#hinhanh").val();
+	var video = $("#video").val();
+	var noidung = $("#summernote1").val();
+	var tacgia = $("#tacgia").val();
+	var _token = $('input[name="_token"]').val();
+
+	$.ajax({
+		type: "POST",
+		url: "http://localhost/KCNEW/taobaiviet",
+		data: { title: title, slug: slug, tomtat: tomtat, danhmuc: danhmuc, thuoctinh: thuoctinh, tag: tag, hinhanh: hinhanh, video: video, noidung: noidung, _token: _token, tacgia: tacgia },
+
+		success: function(data) {
+			$('#success').html(data);
+		}
+	});
 });

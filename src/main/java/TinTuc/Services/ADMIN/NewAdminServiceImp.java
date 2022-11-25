@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import TinTuc.DTO.Admin.CommentDTOAdmin;
 import TinTuc.DTO.Admin.NewDTOAdmin;
 import TinTuc.DTO.User.NewDetailDTO;
 import TinTuc.Entity.New;
@@ -45,5 +46,15 @@ public class NewAdminServiceImp extends BaseService implements NewAdminService{
 	@Override
 	public New getNewByID(int id) {
 		return newDAO.getNewByID(id);
+	}
+
+	@Override
+	public List<NewDTOAdmin> getDataNewAdminAll() {
+		return newDAO.getDataNewAdminAll();
+	}
+
+	@Override
+	public List<CommentDTOAdmin> getCommentToCensorship() {
+		return commentLikeDAO.getCommentToCensorship();
 	}
 }

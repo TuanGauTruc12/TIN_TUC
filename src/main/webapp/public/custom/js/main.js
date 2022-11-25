@@ -112,3 +112,28 @@ $(document).on('submit', '#frmSignUp', function() {
 	}
 	return select;
 });
+
+$("#tao").click(function(e) {
+
+	var title = $("#title").val();
+	var slug = $("#slug").val();
+	var tomtat = $("#tomtat").val();
+	var danhmuc = $("#danhmuc").val();
+	var thuoctinh = $("#thuoctinh").val();
+	var tag = $("#tag").val();
+	var hinhanh = $("#hinhanh").val();
+	var video = $("#video").val();
+	var noidung = $("#summernote1").val();
+	var tacgia = $("#tacgia").val();
+	var _token = $('input[name="_token"]').val();
+
+	$.ajax({
+		type: "POST",
+		url: "http://localhost/KCNEW/taobaiviet",
+		data: { title: title, slug: slug, tomtat: tomtat, danhmuc: danhmuc, thuoctinh: thuoctinh, tag: tag, hinhanh: hinhanh, video: video, noidung: noidung, _token: _token, tacgia: tacgia },
+
+		success: function(data) {
+			$('#success').html(data);
+		}
+	});
+});

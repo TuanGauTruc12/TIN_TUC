@@ -83,6 +83,15 @@ public class NewDAO extends BaseDAO{
 				+ "FROM category, property, user, role, new WHERE category.id = new.id_category AND new.id_property = property.id AND new.author = user.id AND user.id_role = role.id AND new.author = " + idAuthor;
 		return jdbcTemplate.query(sql, new MapperNewDTOAdmin());
  	}
+
+	public List<NewDTOAdmin> getDataNewAdminAll(){
+		String sql = "SELECT new.id AS idNew, new.title AS newTitle, "
+				+ "property.title AS property, category.title AS category, user.name "
+				+ "AS author, new.status, new.approval_Date AS approvalDate, user.id AS idUser "
+				+ "FROM category, property, user, role, new WHERE category.id = new.id_category AND new.id_property = property.id AND new.author = user.id GROUP BY new.id";
+		System.out.println(sql);
+		return jdbcTemplate.query(sql, new MapperNewDTOAdmin());
+ 	}
 	
 	public void insertNew(String title, String slug, String summary, String content, int author, String posting_date, String image, String video, int id_property, int id_category) {
 		StringBuffer sb = new StringBuffer();

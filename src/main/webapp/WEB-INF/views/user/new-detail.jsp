@@ -30,7 +30,7 @@
 	<!-- Main Content Section Start -->
 	<div class="main-content--section pbottom--30">
 		<div class="container">
-			<div class="row justify-content-center text-center">
+			<div class="row">
 				<!-- Main Content Start -->
 				<div class="main--content col-12" data-sticky-content="true">
 					<div class="sticky-content-inner">
@@ -114,7 +114,7 @@
 
 												<div class="post--info">
 													<ul class="nav meta">
-														<li><span>${ newByAuthor.author }</span</li>
+														<li><span>${ newByAuthor.author }</span></li>
 														<li><span>${ newByAuthor.approvalDate }</span></li>
 													</ul>
 
@@ -214,8 +214,8 @@
 							<!-- Post Items Title End -->
 
 							<ul class="comment--items nav"
-								style="border: 2px; solid; background-color: #f2f3f5">
-								<li><c:if test="${ comments.size() == 0 }">
+								style="border: 2px #f2f3f5 solid;">
+								<li style="margin-bottom: 12px;" ><c:if test="${ comments.size() == 0 }">
 										<!-- Comment Item Start -->
 										<div class="comment--item clearfix">
 											<div class="comment--info">
@@ -238,7 +238,7 @@
 												<c:if test="${comment.idUser == user.id }">
 													<!-- Comment Item Start -->
 													<div class="comment--item clearfix">
-														<div class="comment--info pull-right">
+														<div class="comment--info pull-right mt-2">
 															<div class="comment--header clearfix">
 																<p class="name">${ comment.userName }</p>
 																<p class="date">${ comment.commentDate }</p>
