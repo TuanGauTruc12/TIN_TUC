@@ -25,6 +25,7 @@ D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\USER\UserService.jav
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\PropertyController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\USER\NewService.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\USER\NewServiceImp.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\Admin\CommentDTOAdmin.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\MapperLike.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\Admin\NewDTOAdmin.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\BaseDTO.java
@@ -32,6 +33,7 @@ D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DAO\NewDAO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\ADMIN\NewAdminService.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\Property.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\Admin\MapperNewDTOAdmin.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\Admin\MapperCommentDTOAdmin.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\CommentDTO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\NewController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\MapperNewDetailDTO.java

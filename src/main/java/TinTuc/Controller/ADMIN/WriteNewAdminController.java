@@ -1,9 +1,13 @@
 package TinTuc.Controller.ADMIN;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -70,9 +74,21 @@ public class WriteNewAdminController extends BaseAdminController {
 		_mvShare.addObject("categoriesAdmin", list);
 		return _mvShare;
 	}
+	
+	public void coopyFile(String textBase64,String textFileName) {
+		byte[] decryptBase64 = Base64.getDecoder().decode(textBase64.getBytes());
+		try {
+			FileOutputStream out = new FileOutputStream(System.getProperty("user.dir") + "\\src\\main\\webapp\\public\\user\\uploads\\tintuc" + textFileName);
+			out.write(decryptBase64);
+			out.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@RequestMapping(value = "/addNew/", method = RequestMethod.POST)
-	//copy image or video to project
 	public String addNew(@RequestParam(name = "title", required = true) String title,
 			@RequestParam(name = "slug", required = true) String slug,
 			@RequestParam(name = "tomtat", required = true) String summary,
@@ -82,11 +98,17 @@ public class WriteNewAdminController extends BaseAdminController {
 			@RequestParam(name = "hinhanh", required = true) String image,
 			@RequestParam(name = "video", required = false) String video,
 			@RequestParam(name = "thuoctinh", required = true) int id_property,
-			@RequestParam(name = "danhmuc", required = true) int id_category) {
+			@RequestParam(name = "danhmuc", required = true) int id_category,
+			@RequestParam(name = "base64String", required = true) String base64String) {
 		 Date date = Calendar.getInstance().getTime();  
          DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-         System.out.println(image);
-         //newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video, id_property, id_category);
+         
+         if(video.length() == 0) {
+        	 //coopyFile(base64String, image);
+         }else {
+        	 //coopyFile(base64String, image);
+		}
+         newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video, id_property, id_category);
 		return "redirect://admin/new-admin/write-new/" + id_role + "/";
 	}
 

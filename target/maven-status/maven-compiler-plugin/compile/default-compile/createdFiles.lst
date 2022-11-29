@@ -30,9 +30,9 @@ TinTuc\DTO\Admin\MapperDetailAdmin.class
 TinTuc\Entity\MapperCategory.class
 TinTuc\DAO\RoleDAO.class
 TinTuc\Controller\USER\BaseController.class
-TinTuc\Controller\ADMIN\Text.class
 TinTuc\Entity\Category.class
 TinTuc\Entity\MapperComment.class
+TinTuc\DTO\Admin\MapperCommentDTOAdmin.class
 TinTuc\Services\USER\UserServiceImp.class
 TinTuc\Services\USER\BaseService.class
 TinTuc\Services\USER\NewService.class
@@ -53,6 +53,7 @@ TinTuc\DAO\CategoryDAO.class
 TinTuc\Services\USER\HomeServiceImp.class
 TinTuc\Services\ADMIN\RoleAdminService.class
 TinTuc\Controller\ADMIN\AccountAdminController.class
+TinTuc\DTO\Admin\CommentDTOAdmin.class
 TinTuc\DTO\User\MapperCommentDTO.class
 TinTuc\Services\ADMIN\NewAdminServiceImp.class
 TinTuc\Entity\MapperRole.class

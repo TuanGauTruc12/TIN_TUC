@@ -50,11 +50,11 @@
 			</a>
 		</c:if> <c:if test="${ admin.id_role == 2 }">
 			<a class="nav-link"
-				href="<c:url value = "/admin/new-admin/write-new/${ admin.id }"/>">
+				href="<c:url value = "/admin/new-admin/censorship-new/"/>">
 				<i class="fa fa-users"></i> Kiểm duyệt tin tức
 			</a>
 			<a class="nav-link"
-				href="<c:url value = "/admin/new-admin/write-new/${ admin.id }"/>">
+				href="<c:url value = "//admin/new-admin/censorship-new/checkCommentAll/"/>">
 				<i class="fa fa-users"></i> Kiểm duyệt bình luận
 			</a>
 		</c:if> <c:if test="${ admin.id_role == 3}">

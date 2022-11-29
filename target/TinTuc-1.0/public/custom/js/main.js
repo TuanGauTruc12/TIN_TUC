@@ -1,4 +1,4 @@
-$(".toggle-password").click(function() {
+$('.toggle-password').click(function() {
 	$(this).toggleClass("fa-eye fa-eye-slash");
 	var input = $($(this).attr("toggle"));
 	if (input.attr("type") == "password") {
@@ -113,27 +113,121 @@ $(document).on('submit', '#frmSignUp', function() {
 	return select;
 });
 
-$("#tao").click(function(e) {
 
-	var title = $("#title").val();
-	var slug = $("#slug").val();
-	var tomtat = $("#tomtat").val();
-	var danhmuc = $("#danhmuc").val();
-	var thuoctinh = $("#thuoctinh").val();
-	var tag = $("#tag").val();
-	var hinhanh = $("#hinhanh").val();
-	var video = $("#video").val();
-	var noidung = $("#summernote1").val();
-	var tacgia = $("#tacgia").val();
-	var _token = $('input[name="_token"]').val();
+function toast({title = '', message = '', type = 'info', duration = 3000}){
+    const main = document.getElementById('toast');
+    const icons = {
+      success:  'fa-check',
+      warning:  'fa-triangle-exclamation',
+      danger:  'fa-circle-xmark',
+      info:  'fa-circle-info'
+    };
 
-	$.ajax({
-		type: "POST",
-		url: "http://localhost/KCNEW/taobaiviet",
-		data: { title: title, slug: slug, tomtat: tomtat, danhmuc: danhmuc, thuoctinh: thuoctinh, tag: tag, hinhanh: hinhanh, video: video, noidung: noidung, _token: _token, tacgia: tacgia },
+    const icon = icons[type];
+    const delay = (duration/1000).toFixed(2);//lấy thời gian sau dấu thập phân thứ 2.
+    if(main){
+      //Tạo ra thẻ div toast
+      const toast = document.createElement('div');
 
-		success: function(data) {
-			$('#success').html(data);
+      //auto remove
+      const autoRemoveID = setTimeout(() => {
+        main.removeChild(toast);
+      }, duration + 1000);
+
+      //Click close
+      toast.onclick = function(e){
+        //Tìm class và tất cả con trong class toast__close. 
+        //Nếu không thấy thì tìm ra thẻ cha.
+        if(e.target.closest('.toast__close')){
+          main.removeChild(toast);
+          clearTimeout(autoRemoveID);
+        }
+      }
+      
+      console.log(delay);
+
+      //add thẻ div vô trong html
+      toast.classList.add('toast', `toast--${type}`);
+      //add hiệu ứng animotion vô trong html
+      toast.style.animation = `slideInLeft ease 2s, fadeOut linear 1s ${delay}s forwards`;
+      toast.innerHTML = 
+      `<div class="toast__icon">
+          <i class="fa-solid ${icon}"></i>
+        </div>
+        <div class="toast__body">
+          <h3 class="toast__title">${title}</h3>
+          <p class="toast__message">${message}</p>
+        </div>
+        <div class="toast__close">
+          <i class="fa-solid fa-xmark"></i>
+        </div>`;
+      main.appendChild(toast);
+    }
+  }
+
+
+$('#btnAddNew').click(() => {
+	let title = $('#title').val();
+	let slug = $('#slug').val();
+	let tomtat = $('#tomtat').val();
+	let danhmuc = $('#danhmuc').val();
+	let thuoctinh = $('#thuoctinh').val();
+	let hinhanh = $('#hinhanh').val();
+	let video = $('#video').val();
+	let content = $('#content').val();
+	let author = $('#author').val();
+	let id_role = $('#id_role').val();
+	let file = $('#hinhanh')[0].files[0];
+	if (title.length == 0) {
+		$('#error').text("Xin vui lòng nhập tiêu đề bài viết");
+	} else if (tomtat.length == 0) {
+		$('#error').text("Xin vui long nhập tóm tắt");
+	} else if (danhmuc == 0) {
+		$('#error').text("Xin vui lòng chọn danh mục bài viết");
+	} else if (thuoctinh == 0) {
+		$('#error').text('Xin vui lòng chọn thuộc tính bài viết');
+	} else if (typeof (file) === 'undefined') {
+		$('#error').text('Xin vui lòng chọn file');
+	} else if (title.length == 0) {
+		$('#error').text('Xin vui long nhập tiêu đề');
+	} else if (content.length == 0) {
+		$('#error').text('Xin vui lòng nhập nội dung bài viết');
+	} else {
+		$('#error').text('');
+		let base64String;
+		let fileName = file.name;
+		let reader = new FileReader();
+		reader.readAsDataURL(file);
+		reader.onload = () => {
+			base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8080/TinTuc/admin/new-admin/write-new/addNew/",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				data: {
+					title: title,
+					slug: slug,
+					tomtat: tomtat,
+					content: content,
+					id_role: id_role,
+					author: author,
+					hinhanh: fileName,
+					video: video,
+					thuoctinh: thuoctinh,
+					danhmuc: danhmuc,
+					base64String: base64String,
+				}, success: (data) => {
+					showSuccessToast();
+					function showSuccessToast() {
+						toast({
+							title: 'Thành công',
+							message: 'Bạn đã đăng nhập thành công.',
+							type: 'success',
+							duration: 5000
+						});
+					}
+				}
+			});
 		}
-	});
+	}
 });

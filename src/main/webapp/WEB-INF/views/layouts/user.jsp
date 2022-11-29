@@ -107,6 +107,6 @@
     <script src="<c:url value="/public/user/frontend/js/main.js"/>"></script>
 	<!-- ==== Custum JavaScript -->
     <script src="<c:url value="/public/custom/js/main.js"/>"></script>
-	
+	<decorator:getProperty property="page.script"></decorator:getProperty>
 </body>
 </html>
