@@ -110,11 +110,26 @@ public class Comment_LikeDAO extends BaseDAO{
 		return jdbcTemplate.query(sb.toString(), new MapperCommentDTO());
 	}
 	
-	public List<CommentDTOAdmin> getCommentToCensorship(){
+	private StringBuffer sqlCommentPaginate() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT comments.id, new.title AS newTitle, user.name AS userComment, comments.content AS contentComment, comments.comment_date AS commentDate ");
 		sb.append("FROM comments, new, user ");
 		sb.append("WHERE comments.id_user = user.id AND comments.id_new = new.id");
+		return sb;
+	}
+	
+	public List<CommentDTOAdmin> getCommentToCensorship(){
+		StringBuffer sb = sqlCommentPaginate();
 		return jdbcTemplate.query(sb.toString(), new MapperCommentDTOAdmin());
+	}
+	
+	private String sqlCommentPaginate(int start, int totalOnOnePage) {
+		StringBuffer sql = sqlCommentPaginate();
+		sql.append(" LIMIT " + start + ", " + totalOnOnePage);
+		return sql.toString();
+	}
+	
+	public List<CommentDTOAdmin> getDataComments(int start, int totalOnOnePage) {
+		return jdbcTemplate.query(sqlCommentPaginate(start, totalOnOnePage), new MapperCommentDTOAdmin());
 	}
 }

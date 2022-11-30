@@ -36,7 +36,7 @@
 						<td>
 							<div class="btn-group">
 								<a type="button"
-									href="<c:url value = "/admin/new-admin/write-new/showNew/${ newAdmin.idNew }"/>"
+									href="<c:url value = "/admin/new-admin/censorship-new/detail-censorship/${ admin.id_role }/${newAdmin.idNew}"/>"
 									class="btn btn-info"> <i class="fa fa-eye"></i>
 								</a>
 							</div>
@@ -48,8 +48,17 @@
 	</div>
 
 	<ul class="pagination justify-content-center mt-3">
-		<li class="page-item disabled"><a class="page-link">1</a></li>
-		<li class="page-item"><a class="page-link" href="#">2</a></li>
-		<li class="page-item"><a class="page-link" href="#">3</a></li>
+		<c:forEach var="item" begin="1" end="${ paginateInfo.totalPage }"
+			varStatus="loop">
+
+			<c:if test="${ (loop.index) == paginateInfo.currentPage }">
+				<li class="page-item disabled"><a href="<c:url value="/admin/new-admin/censorship-new/news/pages/${ loop.index }"/>"
+					class="page-link">${loop.index}</a></li>
+			</c:if>
+
+			<c:if test="${ (loop.index) != paginateInfo.currentPage }">
+				<li class="page-item"><a class="page-link" href="<c:url value="/admin/new-admin/censorship-new/news/pages/${ loop.index }"/>">${ loop.index }</a></li>
+			</c:if>
+		</c:forEach>
 	</ul>
 </body>

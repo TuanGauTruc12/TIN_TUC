@@ -12,6 +12,7 @@ import TinTuc.Services.USER.BaseService;
 
 @Service
 public class NewAdminServiceImp extends BaseService implements NewAdminService{
+	@Override
 	public List<NewDTOAdmin> getDataNewAdminByIDAuthor(int id_user){
 		return newDAO.getDataNewAdminByIDAuthor(id_user);
 	}
@@ -29,8 +30,8 @@ public class NewAdminServiceImp extends BaseService implements NewAdminService{
 	}
 
 	@Override
-	public void updateNew(int id, boolean status, String approval_date) {
-		newDAO.updateNew(id, status, approval_date);
+	public void updateNew(int id, boolean status) {
+		newDAO.updateNew(id, status);
 	}
 
 	@Override
@@ -56,5 +57,15 @@ public class NewAdminServiceImp extends BaseService implements NewAdminService{
 	@Override
 	public List<CommentDTOAdmin> getCommentToCensorship() {
 		return commentLikeDAO.getCommentToCensorship();
+	}
+
+	@Override
+	public List<CommentDTOAdmin> getDataComments(int start, int totalOnOnePage) {
+		return commentLikeDAO.getDataComments(start, totalOnOnePage);
+	}
+
+	@Override
+	public List<NewDTOAdmin> getDataNewAdminAll(int start, int totalOnOnePage) {
+		return newDAO.getDataNewAdminAll(start, totalOnOnePage);
 	}
 }

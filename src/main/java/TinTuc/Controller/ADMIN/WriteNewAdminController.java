@@ -3,6 +3,7 @@ package TinTuc.Controller.ADMIN;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
@@ -74,11 +75,12 @@ public class WriteNewAdminController extends BaseAdminController {
 		_mvShare.addObject("categoriesAdmin", list);
 		return _mvShare;
 	}
-	
-	public void coopyFile(String textBase64,String textFileName) {
+
+	public void coopyFile(String textBase64, String textFileName) {
 		byte[] decryptBase64 = Base64.getDecoder().decode(textBase64.getBytes());
 		try {
-			FileOutputStream out = new FileOutputStream(System.getProperty("user.dir") + "\\src\\main\\webapp\\public\\user\\uploads\\tintuc" + textFileName);
+			FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")
+					+ "\\src\\main\\webapp\\public\\user\\uploads\\tintuc" + textFileName);
 			out.write(decryptBase64);
 			out.close();
 		} catch (FileNotFoundException e) {
@@ -100,15 +102,11 @@ public class WriteNewAdminController extends BaseAdminController {
 			@RequestParam(name = "thuoctinh", required = true) int id_property,
 			@RequestParam(name = "danhmuc", required = true) int id_category,
 			@RequestParam(name = "base64String", required = true) String base64String) {
-		 Date date = Calendar.getInstance().getTime();  
-         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-         
-         if(video.length() == 0) {
-        	 //coopyFile(base64String, image);
-         }else {
-        	 //coopyFile(base64String, image);
-		}
-         newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video, id_property, id_category);
+		Date date = Calendar.getInstance().getTime();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		coopyFile(base64String, image);
+		newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video,
+				id_property, id_category);
 		return "redirect://admin/new-admin/write-new/" + id_role + "/";
 	}
 

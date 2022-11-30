@@ -4,9 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class MapperCommentDTOAdmin implements RowMapper<CommentDTOAdmin>{
-
 	@Override
 	@Nullable
 	public CommentDTOAdmin mapRow(ResultSet rs, int rowNum) throws SQLException {
