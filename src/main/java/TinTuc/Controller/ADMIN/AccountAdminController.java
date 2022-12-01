@@ -1,6 +1,11 @@
 package TinTuc.Controller.ADMIN;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import TinTuc.Controller.USER.UserController;
 import TinTuc.Entity.Role;
 import TinTuc.Entity.User;
 
@@ -56,13 +62,31 @@ public class AccountAdminController extends BaseAdminController{
 	
 	@RequestMapping(value = {"/insert/"}, method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"})
 	public String insertAccount(@RequestParam(name = "name", required = true) String name,@RequestParam(name = "phone", required = false) String phone, @RequestParam(name = "email", required = true) String email, @RequestParam(name = "password", required = true) String password, @RequestParam(name = "role_select", required = true) int role_select, @RequestParam(name = "email_accuracy", required = false) String email_accuracy) {
-		userAdminServiceImp.insertUser(name, email, password, email_accuracy, phone, role_select);
+		String pass = encription(password);
+		userAdminServiceImp.insertUser(name, email, pass, email_accuracy, phone, role_select);
 		return "redirect:/admin/account/insertAccount/";
 	}
 	
+	 private String encription(String pass) {
+	       StringBuffer sb = new StringBuffer();
+	        try {
+	            MessageDigest md = MessageDigest.getInstance("SHA-256");
+	            md.update(pass.getBytes(StandardCharsets.UTF_8));
+	            byte[] byteData = md.digest();
+	            for (int i = 0; i < byteData.length; i++) {
+	                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	            }
+	        } catch (NoSuchAlgorithmException ex) {
+	            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        return sb.toString();
+	    }
+
+	
 	@RequestMapping(value = "/updateAccount/", method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
 	public String updateUser( @RequestParam(name = "id") int id,@RequestParam(name = "name") String name,@RequestParam(name = "role_select") int id_role,@RequestParam(name = "email") String email, @RequestParam(name = "password") String password,@RequestParam(name = "phone") String phone, @RequestParam(name = "email_accuracy") String email_accuracy ) {
-		userAdminServiceImp.updateUser(id, name, email, password, email_accuracy, phone, id_role);
+		String pass = encription(password);
+		userAdminServiceImp.updateUser(id, name, email, pass, email_accuracy, phone, id_role);
 		return "redirect:/admin/1/";
 	}
 	
