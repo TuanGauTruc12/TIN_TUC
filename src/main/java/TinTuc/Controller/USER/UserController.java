@@ -1,6 +1,11 @@
 package TinTuc.Controller.USER;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpSession;
 
@@ -34,7 +39,8 @@ public class UserController extends BaseController {
 
 	@RequestMapping(value = "/login/", method = RequestMethod.POST)
 	public String dangNhap(HttpSession session, Model model, @RequestParam(name = "email", required = true) String email, @RequestParam(name = "password", required = true) String pass) {
-		List<User> users = userServiceImp.logIn(email, pass);
+		String password = encription(pass);
+		List<User> users = userServiceImp.logIn(email, password);
 		if (users.size() == 0) {
 			model.addAttribute("login", "Đăng nhập thất bại");
 			return "login-signup/login";
@@ -65,6 +71,22 @@ public class UserController extends BaseController {
 		return url;
 	}
 
+	 private String encription(String pass) {
+	       StringBuffer sb = new StringBuffer();
+	        try {
+	            MessageDigest md = MessageDigest.getInstance("SHA-256");
+	            md.update(pass.getBytes(StandardCharsets.UTF_8));
+	            byte[] byteData = md.digest();
+	            for (int i = 0; i < byteData.length; i++) {
+	                sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	            }
+	        } catch (NoSuchAlgorithmException ex) {
+	            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        return sb.toString();
+	    }
+
+	
 	@RequestMapping("/signup/")
 	public ModelAndView dangKi() {
 		mv.setViewName("/login-signup/signUp");
@@ -73,7 +95,8 @@ public class UserController extends BaseController {
 
 	@RequestMapping(value = "/login-signup/signUp/", method = RequestMethod.POST)
 	public String dangKy(@RequestParam(name = "name", required = true) String name, @RequestParam(name = "email", required = true) String email, @RequestParam(name = "password", required = true) String password) {
-		 userServiceImp.signUp(name, email, password, email);
+		String pass = encription(password);
+		userServiceImp.signUp(name, email, pass, email);
 		return "redirect:" + "/login-signup/login/";
 	}
 

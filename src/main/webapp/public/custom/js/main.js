@@ -241,3 +241,31 @@ $("#btnAddNew").click(() => {
 		};
 	}
 });
+
+//location, temp, date
+async function getData(url = '') {
+	const response = await fetch(url, {
+		method: 'GET',
+	});
+	return response.json();
+}
+
+function showPosition(position) {
+	let api = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=04970e49d844f27a9ecdddae8c588a72`;
+	getData(api).then((data) => {
+		let city = data.name;
+		let temp = (data.main.temp - 273.15).toFixed();
+		$('#container__location').text(city);
+		$('#container__tempera').text(temp);
+	});
+}
+function showMain() {
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(showPosition);
+	}
+	let date = new Date();
+	let today = `Hôm nay ${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`;
+	$('#container__date').text(today);
+}
+
+showMain();
