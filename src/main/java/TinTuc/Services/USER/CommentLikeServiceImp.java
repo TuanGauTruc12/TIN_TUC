@@ -51,4 +51,9 @@ public class CommentLikeServiceImp extends BaseService implements CommentLikeSer
 	public List<CommentDTO> getDataComments(String newSlug) {
 		return commentLikeDAO.getDataComments(newSlug);
 	}
+
+	@Override
+	public void deleteComment(int id) {
+		commentLikeDAO.delete(id);
+	}
 }

@@ -3,9 +3,7 @@
 
 <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 <title>Thêm tin tức</title>
-<body>
-
-	<div id="toast"></div>
+<body>	
 	<div class="container">
 		<!-- form start -->
 		<div class="form-group">
@@ -86,4 +84,6 @@
 				class="fa-solid fa-arrow-left"></i>Quay lại</a>
 		</div>
 	</div>
+	
+	<div id="toast"></div>
 </body>

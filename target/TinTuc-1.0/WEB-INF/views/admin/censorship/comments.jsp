@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
+<%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
     
 <title>Kiểm duyệt bình luận</title>
 <body>
@@ -9,6 +9,7 @@
 			class="container rotable table-bordered col-12 text-center ml-2">
 			<thead>
 				<tr>
+					<th>STT</th>
 					<th>Tiêu đề</th>
 					<th>Nội dung bình luận</th>
 					<th>Ngày bình luận</th>
@@ -17,9 +18,10 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="comment" items="${ comments }">
+				<c:forEach var="comment" items="${ comments }" begin="1" varStatus="loop" end="${ comments.size() }">
 					<tr>
-						<td>${ comment.newTitle }</td>
+						<td style="width: 5%;">${ loop.index }</td>
+						<td style="width: 30%;">${ comment.newTitle }</td>
 						<td>${ comment.contentComment }</td>
 						<td>${ comment.commentDate }</td>
 						<td>${ comment.userComment }</td>
@@ -63,5 +65,19 @@
 			</tbody>
 		</table>
 	</div>
+	
+	<ul class="pagination justify-content-center mt-3">
+		<c:forEach var="item" begin="1" end="${ paginateInfo.totalPage }"
+			varStatus="loop">
 
+			<c:if test="${ (loop.index) == paginateInfo.currentPage }">
+				<li class="page-item disabled"><a href="<c:url value="/admin/new-admin/censorship-new/comments/pages/${ loop.index }"/>"
+					class="page-link">${loop.index}</a></li>
+			</c:if>
+
+			<c:if test="${ (loop.index) != paginateInfo.currentPage }">
+				<li class="page-item"><a class="page-link" href="<c:url value="/admin/new-admin/censorship-new/comments/pages/${ loop.index }"/>">${ loop.index }</a></li>
+			</c:if>
+		</c:forEach>
+	</ul>
 </body>

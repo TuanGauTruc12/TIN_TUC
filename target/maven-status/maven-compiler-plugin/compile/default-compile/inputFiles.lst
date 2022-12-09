@@ -17,6 +17,8 @@ D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DAO\RoleDAO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\CategoryController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DAO\PropertyDAO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\MapperNewDTO.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\PaginateMapperDTO.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\PaginatesServiceImp.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\AccountAdminController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\UserController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DAO\CategoryDAO.java
@@ -38,6 +40,7 @@ D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\CommentDTO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\NewController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\MapperNewDetailDTO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\RoleAdminController.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\PaginatesService.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\HomeController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\CensorshipController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\Text.java
@@ -53,12 +56,14 @@ D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\USER\CommentLikeServ
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\MapperUser.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\WriteNewAdminController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\USER\PropertyServiceImp.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\PaginatesDTO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\New.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\Role.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DAO\Comment_LikeDAO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\Comment.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\ADMIN\UserAdminService.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\BaseAdminController.java
+D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\Admin\New.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\MapperCommentDTO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\BaseController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\Category.java

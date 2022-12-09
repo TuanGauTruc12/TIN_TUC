@@ -23,8 +23,8 @@
 		</div>
 	</div>
 	<div class = "row justify-content-center mt-1 mb-3">
-		<a class = "btn btn-success mr-2" href = "<c:url value = "/admin/new-admin/write-new/updateNew/${idNew}"/>">Duyệt</a>
-		<a class = "btn btn-danger mr-2" href = "<c:url value = "/admin/new-admin/write-new/updateNew/${idNew}"/>">Từ chối</a>
-		<a class = "btn btn-secondary ml-2" href = "<c:url value = "/admin/new-admin/write-new/${ admin.id_role }/"/>">Quay lại</a>
+		<a class = "btn btn-success mr-2" href = "<c:url value = "/admin/new-admin/censorship-new/accceptNew/${ idNew }"/>">Duyệt</a>
+		<a class = "btn btn-danger mr-2" href = "<c:url value = "/admin/new-admin/censorship-new/dismissNew/${ idNew }"/>">Từ chối</a>
+		<a class = "btn btn-secondary ml-2" href = "<c:url value = "/admin/new-admin/censorship-new/"/>">Quay lại</a>
 	</div>
 </div>

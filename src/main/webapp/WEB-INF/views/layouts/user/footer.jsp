@@ -4,6 +4,6 @@
 
         <footer class="footer--section">
             <div class="footer--widgets pd--30-0 bg--color-2">
-                
+                <p class="Text-footer">HT-NEWS Đồ Án Cơ Sở</p>
             </div>
         </footer>

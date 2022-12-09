@@ -149,7 +149,6 @@ public class NewDAO extends BaseDAO {
 		sb.append("'").append(video).append("', ");
 		sb.append(id_property).append(", ");
 		sb.append(id_category).append(");");
-		// System.out.println(sb.toString());
 		jdbcTemplate.execute(sb.toString());
 	}
 
@@ -168,7 +167,8 @@ public class NewDAO extends BaseDAO {
 		sb.append("id_property = ").append(id_property).append(", ");
 		sb.append("id_category = ").append(id_category).append(" ");
 		sb.append("WHERE new.id = ").append(id);
-		jdbcTemplate.execute(sb.toString());
+		System.out.println(sb.toString());
+		//jdbcTemplate.execute(sb.toString());
 	}
 
 	public void updateNew(int id, boolean status) {

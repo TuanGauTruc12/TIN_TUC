@@ -18,5 +18,5 @@ public interface CommentLikeService{
 	public List<Like> checkDataLike(String slug, int idUser);
 	public List<Comment> checkDataComment(String slug, int idUser);
 	public List<CommentDTO> getDataComments(String newSlug);
-	
+	public void deleteComment(int id);
 }

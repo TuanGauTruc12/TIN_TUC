@@ -21,12 +21,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import TinTuc.DTO.Admin.New;
 import TinTuc.Entity.Category;
 import TinTuc.Entity.Property;
 
@@ -79,8 +81,7 @@ public class WriteNewAdminController extends BaseAdminController {
 	public void coopyFile(String textBase64, String textFileName) {
 		byte[] decryptBase64 = Base64.getDecoder().decode(textBase64.getBytes());
 		try {
-			FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")
-					+ "\\src\\main\\webapp\\public\\user\\uploads\\tintuc" + textFileName);
+			FileOutputStream out = new FileOutputStream("D:\\WEB\\Back-End\\Spring\\TinTuc\\src\\main\\webapp\\public\\user\\uploads\\tintuc" + textFileName);
 			out.write(decryptBase64);
 			out.close();
 		} catch (FileNotFoundException e) {
@@ -91,21 +92,15 @@ public class WriteNewAdminController extends BaseAdminController {
 	}
 
 	@RequestMapping(value = "/addNew/", method = RequestMethod.POST)
-	public String addNew(@RequestParam(name = "title", required = true) String title,
-			@RequestParam(name = "slug", required = true) String slug,
-			@RequestParam(name = "tomtat", required = true) String summary,
-			@RequestParam(name = "content", required = true) String content,
-			@RequestParam(name = "id_role", required = true) int id_role,
-			@RequestParam(name = "author", required = true) int author,
-			@RequestParam(name = "hinhanh", required = true) String image,
-			@RequestParam(name = "video", required = false) String video,
-			@RequestParam(name = "thuoctinh", required = true) int id_property,
-			@RequestParam(name = "danhmuc", required = true) int id_category,
-			@RequestParam(name = "base64String", required = true) String base64String) {
+	public String addNew(@RequestParam(name = "title") String title, @RequestParam(name = "slug") String slug,
+			@RequestParam(name = "tomtat") String summary, @RequestParam(name = "content") String content,
+			@RequestParam(name = "id_role") int id_role, @RequestParam(name = "author") int author,
+			@RequestParam(name = "hinhanh") String hinhanh, @RequestParam(name = "thuoctinh") int id_property,
+			@RequestParam(name = "danhmuc") int id_category, @RequestParam(name = "base64String") String base64String) {
 		Date date = Calendar.getInstance().getTime();
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		coopyFile(base64String, image);
-		newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), image, video,
+		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");	
+		coopyFile(base64String, hinhanh);
+		newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), hinhanh, "",
 				id_property, id_category);
 		return "redirect://admin/new-admin/write-new/" + id_role + "/";
 	}

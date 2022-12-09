@@ -19,7 +19,7 @@ public class Comment_LikeDAO extends BaseDAO{
 
 	@Override
 	public void delete(int id) {
-		jdbcTemplate.execute(delete(id, "comments_likes").toString());
+		jdbcTemplate.execute(delete(id, "comments").toString());
 	}
 	
 	public void insertCommentNew(int idNew, int idUser, String content, Date commentDate) {

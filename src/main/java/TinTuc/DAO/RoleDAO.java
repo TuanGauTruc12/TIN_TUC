@@ -12,8 +12,8 @@ public class RoleDAO extends BaseDAO{
 
 	@Override
 	public void delete(int id) {
-		System.out.println(delete(id, "role").toString());
-		//jdbcTemplate.execute(delete(id, "role").toString());
+		//System.out.println(delete(id, "role").toString());
+		jdbcTemplate.execute(delete(id, "role").toString());
 	}
 	
 	public List<Role> getAllRole(){

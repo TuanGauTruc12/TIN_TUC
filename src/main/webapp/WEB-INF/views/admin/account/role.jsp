@@ -24,7 +24,7 @@
 					<c:if test="${ role.id != roleAll.id }">
 
 						<tr>
-							<td>${ loop.index }</td>
+							<td>${ loop.index + 1 }</td>
 							<td>${ roleAll.name }</td>
 
 							<td>
@@ -62,7 +62,7 @@
 										<button class="btn btn-secondary" type="button"
 											data-dismiss="modal">Hủy</button>
 										<a class="btn btn-primary"
-											href="<c:url value = "/deleteRole/${ roleAll.id }"/>">Xóa
+											href="<c:url value = "/admin/1/quan-ly-vai-tro/deleteRole/${ roleAll.id }"/>">Xóa
 										</a>
 									</div>
 								</div>

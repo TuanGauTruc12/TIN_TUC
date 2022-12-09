@@ -71,7 +71,7 @@
 
 
 
-							<div class="post--content w-100">
+							<div class="post--content w-100 text-start">
 								<div style="padding-left: 50px; padding-right: 50px;">${ newDetail.content }</div>
 							</div>
 						</div>

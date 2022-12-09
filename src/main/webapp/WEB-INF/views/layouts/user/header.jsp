@@ -103,7 +103,7 @@
 			</div>
 
 			<!-- Header Search Form Start -->
-			<form method="POST" action="http://localhost/KCNEW/search"
+			<form method="POST" action="#"
 				class="header--search-form float--right" data-form="validate">
 				<input type="hidden" name="_token"
 					value="tN7wwlY5SleuIOoI545rZT8qySnpix8Vd9mMB01v" /> <input
@@ -126,14 +126,14 @@
 <div class="posts--filter-bar style--3 hidden-xs">
 	<div class="container">
 		<ul class="nav">
-			<li><a href="http://localhost/KCNEW/tintucmoinhat"> <i
+			<li><a href="#!"> <i
 					class="fa fa-star-o"></i> <span>Tin tức mới nhất</span>
 			</a></li>
 
-			<li><a href="http://localhost/KCNEW/tinnong"> <i
+			<li><a href="#!"> <i
 					class="fa fa-fire"></i> <span>Tin nóng</span>
 			</a></li>
-			<li><a href="http://localhost/KCNEW/xemnhieunhat"> <i
+			<li><a href="#!"> <i
 					class="fa fa-eye"></i> <span>Xem nhiều nhất</span>
 			</a></li>
 		</ul>

@@ -60,11 +60,11 @@ public class AccountAdminController extends BaseAdminController{
 		return _mvShare;
 	}
 	
-	@RequestMapping(value = {"/insert/"}, method = RequestMethod.POST, consumes = {"application/x-www-form-urlencoded"})
+	@RequestMapping(value = {"/insert/"}, method = RequestMethod.POST)
 	public String insertAccount(@RequestParam(name = "name", required = true) String name,@RequestParam(name = "phone", required = false) String phone, @RequestParam(name = "email", required = true) String email, @RequestParam(name = "password", required = true) String password, @RequestParam(name = "role_select", required = true) int role_select, @RequestParam(name = "email_accuracy", required = false) String email_accuracy) {
 		String pass = encription(password);
 		userAdminServiceImp.insertUser(name, email, pass, email_accuracy, phone, role_select);
-		return "redirect:/admin/account/insertAccount/";
+		return "redirect:/admin/account/showALL/1";
 	}
 	
 	 private String encription(String pass) {
@@ -83,7 +83,7 @@ public class AccountAdminController extends BaseAdminController{
 	    }
 
 	
-	@RequestMapping(value = "/updateAccount/", method = RequestMethod.POST, consumes = "application/x-www-form-urlencoded")
+	@RequestMapping(value = "/updateAccount/", method = RequestMethod.POST)
 	public String updateUser( @RequestParam(name = "id") int id,@RequestParam(name = "name") String name,@RequestParam(name = "role_select") int id_role,@RequestParam(name = "email") String email, @RequestParam(name = "password") String password,@RequestParam(name = "phone") String phone, @RequestParam(name = "email_accuracy") String email_accuracy ) {
 		String pass = encription(password);
 		userAdminServiceImp.updateUser(id, name, email, pass, email_accuracy, phone, id_role);
@@ -93,6 +93,6 @@ public class AccountAdminController extends BaseAdminController{
 	@RequestMapping("/delete/{id}")
 	public String deleteUser(@PathVariable int id) {
 		userAdminServiceImp.deleteUser(id);
-		return "redirect:/admin/account/insertAccount/";
+		return "redirect:/admin/account/showALL/1/";
 	}
 }

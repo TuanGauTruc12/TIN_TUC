@@ -97,6 +97,7 @@ $("#danhmuc").change(function(e) {
 			contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 			data: { category: idDanhMuc },
 			dataType: "text",
+
 			success: function(data) {
 				$("#" + result).html(data);
 			},
@@ -186,13 +187,10 @@ $("#btnAddNew").click(() => {
 	let tomtat = $("#tomtat").val();
 	let danhmuc = $("#danhmuc").val();
 	let thuoctinh = $("#thuoctinh").val();
-	//let video = $("#video").val();
 	let content = $("#content").val();
 	let author = $("#author").val();
 	let id_role = $("#id_role").val();
 	let file = $("#hinhanh")[0].files[0];
-	//let file_video = $('#video')[0].files[0];
-
 	if (title.length == 0) {
 		$("#error").text("Xin vui lòng nhập tiêu đề bài viết");
 	} else if (tomtat.length == 0) {
@@ -213,38 +211,36 @@ $("#btnAddNew").click(() => {
 		let fileName = file.name;
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
+
 		reader.onload = () => {
 			base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
-			setTimeout(() => {
-				$.ajax({
-					type: "POST",
-					url: "http://localhost:8080/TinTuc/admin/new-admin/write-new/addNew/",
-					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-					data: {
-						title: title,
-						slug: slug,
-						tomtat: tomtat,
-						content: content,
-						id_role: id_role,
-						author: author,
-						hinhanh: fileName,
-						//video: video,
-						thuoctinh: thuoctinh,
-						danhmuc: danhmuc,
-						base64String: base64String,
-					},
-					success: () => {
-						showSuccessToast();
-					},
-				});
-			}, 5000);
+			$.ajax({
+				type: "POST",
+				url: "http://localhost:8080/TinTuc/admin/new-admin/write-new/addNew/",
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				data: {
+					title: title,
+					slug: slug,
+					tomtat: tomtat,
+					content: content,
+					id_role: id_role,
+					author: author,
+					hinhanh: fileName,
+					thuoctinh: thuoctinh,
+					danhmuc: danhmuc,
+					base64String: base64String,
+				},
+				success: () => {
+					showSuccessToast();
+				}
+			});
 		};
 	}
 });
 
-//location, temp, date
+
 async function getData(url = '') {
-	const response = await fetch(url, {
+	let response = await fetch(url, {
 		method: 'GET',
 	});
 	return response.json();
@@ -254,16 +250,17 @@ function showPosition(position) {
 	let api = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=04970e49d844f27a9ecdddae8c588a72`;
 	getData(api).then((data) => {
 		let city = data.name;
+		console.log(api);
 		let temp = (data.main.temp - 273.15).toFixed();
 		$('#container__location').text(city);
 		$('#container__tempera').text(temp);
 	});
 }
 function showMain() {
+	let date = new Date();
 	if (navigator.geolocation) {
 		navigator.geolocation.getCurrentPosition(showPosition);
 	}
-	let date = new Date();
 	let today = `Hôm nay ${date.getDate()}-${(date.getMonth() + 1)}-${date.getFullYear()}`;
 	$('#container__date').text(today);
 }

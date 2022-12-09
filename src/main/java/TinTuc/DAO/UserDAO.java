@@ -43,7 +43,7 @@ public class UserDAO extends BaseDAO{
 
 	public void insertUser(String name, String email, String password, String email_accuracy, String phone, int id_role) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("INSERT INTO user (name, email, password, email_accuracy, phone, id_role) VALUES ('");
+		sb.append("INSERT INTO user (name, email, password, email_accuracy, mobile, id_role) VALUES ('");
 		sb.append(name);
 		sb.append("', '");
 		sb.append(email);
@@ -51,10 +51,10 @@ public class UserDAO extends BaseDAO{
 		sb.append(password);
 		sb.append("', '");
 		sb.append(email_accuracy);
-		sb.append("')");
+		sb.append("");
 		sb.append("', '");
 		sb.append(phone);
-		sb.append("')");
+		sb.append("");
 		sb.append("', ");
 		sb.append(id_role);
 		sb.append(")");
@@ -77,7 +77,7 @@ public class UserDAO extends BaseDAO{
 		sb.append(email_accuracy);
 		sb.append("' WHERE id = ");
 		sb.append(id);
-		System.out.println(sb.toString());
+		jdbcTemplate.execute(sb.toString());
 	}
 	
 	public List<User> getAllUser(){

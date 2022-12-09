@@ -84,6 +84,7 @@ public class CensorshipController extends BaseAdminController {
 
 	@RequestMapping("/delete-comment-new/{id}")
 	public String deleteComment(@PathVariable int id) {
+		commentLikeServiceImp.deleteComment(id);
 		return "redirect://admin/new-admin/censorship-new/checkCommentAll/";
 	}
 
