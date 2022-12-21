@@ -80,7 +80,7 @@
 		<div class="form-group mb-3 clearfix">
 			<input type="submit" id="btnAddNew" class="btn btn-primary"
 				value="Thêm"> <a class="btn btn-outline-info"
-				href="<c:url value = "/admin/new-admin/write-new/${ admin.id }"/>"><i
+				href="<c:url value = "/admin/new-admin/write-new/${ admin.id_role }/"/>"><i
 				class="fa-solid fa-arrow-left"></i>Quay lại</a>
 		</div>
 	</div>

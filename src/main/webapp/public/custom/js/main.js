@@ -211,8 +211,9 @@ $("#btnAddNew").click(() => {
 		let fileName = file.name;
 		let reader = new FileReader();
 		reader.readAsDataURL(file);
-
+		
 		reader.onload = () => {
+			console.log(reader.result);
 			base64String = reader.result.replace("data:", "").replace(/^.+,/, "");
 			$.ajax({
 				type: "POST",

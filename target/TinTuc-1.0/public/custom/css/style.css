@@ -283,3 +283,10 @@ footer.sticky-footer {
 .toast__close:hover{
   color: #ccc;
 }
+
+.Text-footer {
+	font-weight: bold;
+	font-size: 20px;
+	color: #fff;
+	text-align: center;
+}

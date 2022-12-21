@@ -80,6 +80,8 @@ public class WriteNewAdminController extends BaseAdminController {
 
 	public void coopyFile(String textBase64, String textFileName) {
 		byte[] decryptBase64 = Base64.getDecoder().decode(textBase64.getBytes());
+		System.out.println(textBase64);
+		/*
 		try {
 			FileOutputStream out = new FileOutputStream("D:\\WEB\\Back-End\\Spring\\TinTuc\\src\\main\\webapp\\public\\user\\uploads\\tintuc" + textFileName);
 			out.write(decryptBase64);
@@ -89,6 +91,7 @@ public class WriteNewAdminController extends BaseAdminController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 
 	@RequestMapping(value = "/addNew/", method = RequestMethod.POST)
@@ -100,8 +103,8 @@ public class WriteNewAdminController extends BaseAdminController {
 		Date date = Calendar.getInstance().getTime();
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");	
 		coopyFile(base64String, hinhanh);
-		newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), hinhanh, "",
-				id_property, id_category);
+		//newAdminServiceImp.insertNew(title, slug, summary, content, author, dateFormat.format(date), hinhanh, "",
+			//	id_property, id_category);
 		return "redirect://admin/new-admin/write-new/" + id_role + "/";
 	}
 

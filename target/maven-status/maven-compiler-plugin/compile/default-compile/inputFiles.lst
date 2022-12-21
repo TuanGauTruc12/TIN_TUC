@@ -43,7 +43,6 @@ D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\RoleAdminCon
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\PaginatesService.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\USER\HomeController.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\CensorshipController.java
-D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Controller\ADMIN\Text.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Entity\Like.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\DTO\User\NewDetailDTO.java
 D:\WEB\Back-End\Spring\TinTuc\src\main\java\TinTuc\Services\USER\CategoryService.java

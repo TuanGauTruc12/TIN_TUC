@@ -10,7 +10,7 @@
 
 			<form method="post"
 				action="<c:url value = "/admin/account/insert/"/>"
-				accept-charset='ISO-8859-1,utf-8' id = "form">
+				accept-charset='UTF-8' id = "form">
 				<div class="form-group">
 					<div class="row">
 						<div class="col">
